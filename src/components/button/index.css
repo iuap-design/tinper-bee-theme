@@ -1,0 +1,16 @@
+.ac-button{
+  width: 175px;
+  height: 60px;
+  border: 1px solid rgba(189, 189, 189, 1);
+  border-radius: 5px;
+  line-height: 60px;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  background: rgba(255,255,255,0.3);
+}
+.ac-button:hover{
+  background:rgba(223,53,40,1);
+  color: #fff;
+}

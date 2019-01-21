@@ -1,0 +1,37 @@
+.panel{
+  margin-bottom: 30px;
+}
+.panel-left{
+  width: 80px;
+  text-align: left;
+}
+.panel-left img{
+  width: 80%;
+  cursor: pointer;
+}
+.panel-right{
+
+}
+.panel-right h3{
+  color: #cb3837;
+  text-decoration: none;
+  font-weight: 600;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+.panel-right .describe{
+  line-height: 18px;
+  margin: 4px 0;
+  color: rgb(51, 51, 51);
+  font-weight: 400;
+  font-size: 16px;
+}
+.panel-right .edition{
+  margin: 8px 0;
+  color: rgb(51, 51, 51);
+}
+.red{
+  color: #cb3837;
+  text-decoration: none;
+  font-weight: 600;
+}
