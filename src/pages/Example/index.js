@@ -53,15 +53,20 @@ class Example extends Component {
   render() {
     let {styleJs:{all:_primary,button:_button},clsPrefix,theme} = this.props;
     //button
-    const PrimaryButton = styled(Button)`${_primary}`;
+    // const PrimaryButton = styled(Button)`${_primary}`;
+    const PrimaryButton = styled(Button)`{
+
+    }`;
     const SecondaryButton = styled(Button)`${_button}`;
 
     const PrimaryPagination = styled(Pagination)`${_primary}`;
     const PrimaryModal = styled(Modal)`${_primary}`;
     const PrimaryRadio = styled(Radio)`{
-      label:before{
-        box-shadow: inset 0 0 0 10px #${rgbHex(theme["primary-color"])}  !important;
-        border-color:#${rgbHex(theme["primary-color"])} !important;
+      .is-checked{
+        label:before{
+          box-shadow: inset 0 0 0 10px #${rgbHex(theme["primary-color"])}  !important;
+          border-color:#${rgbHex(theme["primary-color"])} !important;
+        }
       }
     }`;
     const PrimaryPopconfirm = styled(Popconfirm)``;
@@ -96,8 +101,8 @@ class Example extends Component {
     return (
       <div className={`${clsPrefix}-example`}> 
 
-          <div className="example" >
-            {/* <div className="title"># bee-Button</div> */}
+        <div className="example" >
+            <div className="title"><span className="titile-well">#</span>Button</div>
             <div className="component" >
               <PrimaryButton colors="primary" className="button">主按钮(primary)</PrimaryButton>
               <SecondaryButton colors="secondary" className="button">次按钮(secondary)</SecondaryButton>
@@ -118,20 +123,22 @@ class Example extends Component {
               />
             </div> */}
 
+            <div className="title"><span className="titile-well">#</span>Radio</div>
             <div className="component" >
-              <PrimaryRadio.RadioGroup className="component"  name="lol" selectedValue={this.state.selectedValue} onChange={this.handleChange.bind(this)}>
+              <PrimaryRadio.RadioGroup name="lol" selectedValue={this.state.selectedValue} onChange={this.handleChange.bind(this)}>
                   <PrimaryRadio value="ig" >男</PrimaryRadio>
                   <PrimaryRadio value="edg" >女</PrimaryRadio> 
               </PrimaryRadio.RadioGroup>
             </div>
 
-
+            <div className="title"><span className="titile-well">#</span>Popconfirm</div>
             <div className="component" >
               <PrimaryPopconfirm trigger="click" placement="right" content='您喜欢使用tinper-bee组件库吗？'>
                   <PrimaryButton colors="primary">点击</PrimaryButton>
               </PrimaryPopconfirm>
             </div>
-
+            
+            <div className="title"><span className="titile-well">#</span>Checkbox</div>
             <div className="component">
                 <PrimaryCheckbox
                     disabled
@@ -150,17 +157,20 @@ class Example extends Component {
                     半选
                 </PrimaryCheckbox>
             </div>
-
+            
+            <div className="title"><span className="titile-well">#</span>Switch</div>
             <div className="component">
               <PrimarySwitch
                 checked={true}
               />
             </div>
-
+            
+            <div className="title"><span className="titile-well">#</span>ProgressBar</div>
             <div className="component">
               <PrimaryProgressBar style={{width:30}} now = {40} />
             </div>
-
+            
+            <div className="title"><span className="titile-well">#</span>Select</div>
             <div className="component">
               <PrimarySelect
                 defaultValue="lucy"
@@ -174,11 +184,14 @@ class Example extends Component {
                 <Option value="yiminghe">yuzhao</Option>
               </PrimarySelect>
             </div>
-
-            <div className="component" style={{paddingTop:200}}>
+            
+            <div className="title"><span className="titile-well">#</span>Rate</div>
+            <div className="component">
               <PrimaryRate value={3} />
             </div>
-
+            
+            <div className="title"><span className="titile-well">#</span>界面</div>
+            <div className="component interface"></div>
             {/* <div className="component" style={{paddingTop:200}}>
               <PrimarySlider defaultValue={20} />
             </div> */}

@@ -47,7 +47,7 @@ class PhotoshopPickerComp extends React.Component {
     const styles = reactCSS({
       'default': {
         color: {
-          width: '36px',
+          width: '14px',
           height: '14px',
           borderRadius: '2px',
           background: `rgba(${ this.state.color.r }, ${ this.state.color.g }, ${ this.state.color.b }, ${ this.state.color.a })`,

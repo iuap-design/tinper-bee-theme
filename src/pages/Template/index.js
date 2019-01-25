@@ -45,7 +45,6 @@ class Template extends Component {
     this.setState({
       active: type
     })
-    this.props.entityContentStore.changeActiveTabs(type)
   }
 
   render() {

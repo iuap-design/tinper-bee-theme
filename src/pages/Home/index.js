@@ -44,7 +44,7 @@ let defaultValueAll = {
   active:"#405569 !important",
   "font-family":"Open Sans2 !important",
   "font-size":"12 !important",
-  color:"#405569 !important",
+  color:"#ffffff !important",
   "border-color":"#405569 !important",
 }
 
@@ -81,7 +81,7 @@ class Home extends Component {
               // 字体
               "font-family-primary":"Open Sans",
               "font-size-base":"12",
-              "text-color-base":_defaultColor,
+              "text-color-base":"255,255,255",
               "border-color":_defaultColor,
 
                // 次按钮文本色
@@ -337,14 +337,14 @@ class Home extends Component {
           </ul>
         </div> */}
 
-        <h2>自定义主题</h2>
+       <div className="title"><span className="titile-well">#</span>自定义主题</div>
 
        <div className="primry">
           {
              this.getComponentListRender()
           } 
           <div className="online title">
-             组件效果预览
+            预览
             <hr />
           </div>
 
@@ -353,6 +353,7 @@ class Home extends Component {
           </div>
 
           <div className='submit'>
+            <p>你的定制版Tinper UI即将大功告成. 只要点击下边的按钮就可以下载了.</p>
             <Button colors="primary" className="login" onClick={this.submit}>开始构建</Button> 
             <Button colors="primary" className="login" onClick={this.update}>更新代码</Button> 
             {/* <Button colors="primary" className="login" onClick={this.submitNcc}>Ncc 主题build 保存</Button> */}
