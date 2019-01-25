@@ -4,8 +4,8 @@ import { AppContainer } from 'react-hot-loader';
 // 引入路由
 import getRouter from 'router/router';
 // 引入css样式
-import './static/style/um.css';
-import './static/style/markdown.css';
+// import './static/style/um.css';
+// import './static/style/markdown.css';
 
 /*初始化*/
 renderWithHotReload(getRouter());

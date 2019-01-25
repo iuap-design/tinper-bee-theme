@@ -8,7 +8,8 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const commonConfig = require('./webpack.common.config.js');
 
 const publicConfig = {
-  devtool: 'cheap-module-source-map',
+  // devtool: 'cheap-module-source-map',
+  devtool: 'source-map',// devtool优化
   module: {
     rules: [{
       test: /\.css$/,
@@ -23,13 +24,13 @@ const publicConfig = {
     // 每次打包前自动清理下dist文件。
     new CleanWebpackPlugin(['dist/*.*']),
     // 压缩生成的文件。
-    new UglifyJSPlugin(),
+    // new UglifyJSPlugin(),
     // 我们可以使用 webpack 内置的 DefinePlugin 为所有的依赖定义这个变量：
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production'),
         'HOST': '""',
-        'API':'"/npm"'
+        'API':'"/server"'
       }
     }),
     // 单独生成css文件。

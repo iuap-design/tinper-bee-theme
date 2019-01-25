@@ -44,7 +44,6 @@ class PhotoshopPickerComp extends React.Component {
   };
 
   render() {
-
     const styles = reactCSS({
       'default': {
         color: {

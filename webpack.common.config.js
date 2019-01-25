@@ -41,6 +41,33 @@ commonConfig = {
           }
         }
       ]
+    },
+    {
+        test: /\.less$/,
+        use: ['style-loader','css-loader', 'less-loader']
+    }, 
+    {
+        test: /\.scss$/,
+        use: ['style-loader','css-loader', 'sass-loader']
+    }, 
+    {
+        test: /\.(png|jpg|jpeg|gif)(\?.+)?$/,
+        exclude: /favicon\.png$/,
+        use: [{
+            loader: "url-loader",
+            options: {
+            limit: 8196,
+            name: "images/[name].[hash:8].[ext]"
+            }
+        }]
+        }, {
+        test: /\.(eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+        use: [{
+            loader: "file-loader",
+            options: {
+            name: "images/[name].[hash:8].[ext]"
+            }
+        }]
     }]
   },
   plugins: [

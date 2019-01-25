@@ -1,9 +1,4 @@
 import ReactDOM from 'react-dom';
-// import fetch from "fetch-plugin"
-// import fetchTimeout from 'fetch-timeout';
-
-// const YNPM_SERVER = "http://ir6fs8gj.c87e2267-1001-4c70-bb2a-ab41f3b81aa3.app.yyuap.com";
-const YNPM_SERVER = "http://localhost:3001";
 
 export const getHost = (key = 'api') => {
     const hosts = {
@@ -37,84 +32,39 @@ const fetchTools = {
             return '';
         }
     },
-    _fetch(fetch_promise, timeout) {
-        var abort_fn = null;
-  
-        //这是一个可以被reject的promise
-        var abort_promise = new Promise(function(resolve, reject) {
-               abort_fn = function() {
-                  reject('abort promise');
-               };
+    fetch(url, options) {
+        return fetch(url, options).then((response) => {
+            if (response.ok) {
+                return response.text().then((text) => {
+                    if (text) {
+                        let result = {
+                            success: false,
+                            message: '接口请求失败',
+                        };
+                        try {
+                            result = JSON.parse(text);
+                        } catch (e) {
+                            return Promise.reject(new Error('接口返回数据无法解析'));
+                        }
+                        const { success, data, message } = result;
+                        if (success) {
+                            return Promise.resolve(data);
+                        } 
+                        return Promise.reject(message);
+                    }
+                    return Promise.reject(new Error('接口未返回数据'));
+                });
+            }
+            return Promise.reject(new Error('请求失败'));
         });
-  
-        //这里使用Promise.race，以最快 resolve 或 reject 的结果来传入后续绑定的回调
-         var abortable_promise = Promise.race([
-               fetch_promise,
-               abort_promise
-         ]);
-  
-         setTimeout(function() {
-               abort_fn();
-          }, timeout);
-  
-         return abortable_promise;
-  },
-  getFetch(url, options) {
-        
-        return _fetch(fetch(url,options), 20000).then( function (result) {
-            console.log("----success----");
-            console.log(result)
-        }, function (error) {
-            console.log("----error----");
-            console.log(error)
-        })
-
-       
-        // debugger;
-        // fetch.getJSON(url,{
-        //     a: "a",
-        //     b: "b"
-        // }, {
-        //     timeout: 10000
-        // }).then( function (result) {
-        //     console.log(result)
-        // }, function (error) {
-        //     console.log(error)
-        // })
-
-        // console.log(JSON.stringify(options));
-        // return fetch(url, {...options,timeout: 500000}).then((response) => {
-        //     if (response.ok) {
-        //         return response.text().then((text) => {
-        //             if (text) {
-        //                 let result = {
-        //                     success: false,
-        //                     message: '接口请求失败',
-        //                 };
-        //                 try {
-        //                     result = JSON.parse(text);
-        //                 } catch (e) {
-        //                     return Promise.reject(new Error('接口返回数据无法解析'));
-        //                 }
-        //                 const { success, data, message } = result;
-        //                 if (success) {
-        //                     return Promise.resolve(data);
-        //                 } 
-        //                 return Promise.reject(message);
-        //             }
-        //             return Promise.reject(new Error('接口未返回数据'));
-        //         });
-        //     }
-        //     return Promise.reject(new Error('请求失败'));
-        // });
     },
     options(method = 'get', options = {}) {
         return {
             method: method.toUpperCase(),
+            mode:'no-cors',
             credentials: 'include',
-            cache: 'no-cache',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                'Content-Type': 'application/json;charset=UTF-8',
                 'isAjax': 1,
             },
             ...options,
@@ -134,7 +84,6 @@ export function post(oriUrl, oriParams = {}) {
     const {
         params,
         fetch,
-        _fetch,
         options: optionsMaker,
         urlMaker,
     } = fetchTools;
@@ -146,17 +95,7 @@ export function post(oriUrl, oriParams = {}) {
     } catch (e) {
         return Promise.reject(e);
     }
-
-    return _fetch(fetch(urlMaker(process.env.API + oriUrl), options), 2000).then( function (result) {
-        console.log("----success----");
-        console.log(result)
-    }, function (error) {
-        console.log("----error----");
-        console.log(error)
-    })
-
-    // return getFetch(urlMaker(process.env.API + oriUrl), options);
-    // return fetch(urlMaker(oriUrl), options);
+    return fetch(urlMaker(process.env.API + oriUrl), options);
 }
 
 export function postFileCros(oriUrl, file) {
