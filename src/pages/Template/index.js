@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Tabs from 'bee-tabs';
+import Home from '../Home'
 
 import './index.scss';
 
@@ -57,11 +58,11 @@ class Template extends Component {
                 style={{width:'500px'}}
                 tabIndex='3'
             >
-                <TabPane tab='望庐山瀑布' key="1">
-                     111
+                <TabPane tab='主题模板' key="1">
+                  
                 </TabPane>
-                <TabPane tab='望庐山瀑2布' key="1-2">
-                    2222
+                <TabPane tab='自定义主题' key="1-2">
+                  <Home />
                 </TabPane>
                
             </Tabs> 

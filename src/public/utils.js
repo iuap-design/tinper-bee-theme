@@ -1,8 +1,5 @@
 import ReactDOM from 'react-dom';
 
-// const YNPM_SERVER = "http://ir6fs8gj.c87e2267-1001-4c70-bb2a-ab41f3b81aa3.app.yyuap.com";
-const YNPM_SERVER = "http://localhost:3001";
-
 export const getHost = (key = 'api') => {
     const hosts = {
         api: {
