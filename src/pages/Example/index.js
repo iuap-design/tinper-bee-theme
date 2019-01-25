@@ -165,7 +165,6 @@ class Example extends Component {
               <PrimarySelect
                 defaultValue="lucy"
                 style={{ width: 200, marginRight: 6 }}
-                open={true}
               >
                 <Option value="jack">boyuzhou111</Option>
                 <Option value="lucy">renhualiu</Option>

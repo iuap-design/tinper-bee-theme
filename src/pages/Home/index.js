@@ -27,15 +27,15 @@ const defaultProps = {
 
 let defaultColor = {
   // 默认色
-  "default-color":"$palette-grey-300",
-  "default-color-dark":"$palette-grey-400",
-  "default-color-light":"$palette-grey-200",
+  "default-color":"224,224,224",
+  "default-color-dark":"189,189,189",
+  "default-color-light":"238,238,238",
   // 辅色
   "color-accent":"$palette-green-600",
   "color-accent-dark":"$palette-green-800",
   "color-accent-light":"$palette-green-400",
 }
-const _defaultColor = "64,85,105,1"; 
+const _defaultColor = "30,136,229"; 
 
 let defaultValueAll = {
   background: "#405569 !important",
@@ -246,7 +246,7 @@ class Home extends Component {
   getComponentListRender = ()=>{
     let dataList = {
       all:[
-        {type:"color",label:"主色",key:"primary-color",style:"background"},
+        {type:"color",label:"主题色",key:"primary-color",style:"background"},
         {type:"color",label:"点击色(active)",key:"primary-color-dark",style:"active"},
         {type:"color",label:"点击色(hover)",key:"primary-color-light",style:"hover"},
         {type:"hr"},
@@ -327,17 +327,17 @@ class Home extends Component {
     let _primary = state.styleJs.all;
     let _button = state.styleJs.button; 
     return (
-      <div className={`${clsPrefix}-home`}>
-         <h2>官方主题</h2>
+      <div className={`${clsPrefix}-home ${this.props.className}`}>
+         {/* <h2>官方主题</h2>
         <div className="header">
           <ul>
             <li><a href="javascript:void(0)" onClick={this.themClick} id="ncc" >NCC 主题</a></li>
             <li><a href="javascript:void(0)" onClick={this.themClick} id="yxy" >营销云 主题</a></li>
             <li><a href="javascript:void(0)" onClick={this.themClick} id="hxlh" >华新丽华 主题</a></li>
           </ul>
-        </div>
+        </div> */}
 
-        <h2>在线构建自定义主题</h2>
+        <h2>自定义主题</h2>
 
        <div className="primry">
           {

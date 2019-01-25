@@ -74,6 +74,31 @@
   a:active{
     color: yellow;
   }
-
+  .table-section-nav{
+    width: 100%;
+    line-height: 40px;
+    color:rgba(66,66,66,1);
+    border-bottom: 2px #C8C8C8 solid;
+    display: flex;
+    margin-top: 14px;
+    justify-content: left;
+    li{
+      width: 120px;
+      color: #424242;
+      font-size: 18px;
+      text-align: center;
+      cursor: pointer;
+      &.active{
+        // color: #40BE00;
+        .underline{
+          width: 50%;
+          height:2px;
+          background:#40BE00;
+          margin: 0 auto;
+          // margin-bottom: -8px;
+        }
+      }
+    }
+  }
 
 }
