@@ -6,20 +6,16 @@ const hexRgb = require('hex-rgb');
 import {Label, FormControl } from 'tinper-bee';
 import './index.less';
 
-const _defaultColor = "64,85,105,1";
+const _defaultColor = "#E25751";
 
 class PhotoshopPickerComp extends React.Component {
 
   constructor(props) {
     super(props);
-    let color = (this.props.defaultValue?this.props.defaultValue:_defaultColor).split(",");
+    let color = (props.defaultValue?props.defaultValue:_defaultColor);
+    let {red:r,green:g,blue:b,alpha:a}  = hexRgb(color);
     this.state = {
-      color:{
-        r:color[0],
-        g:color[1],
-        b:color[2],
-        a:color[3],
-      },
+      color:{ r,g,b,a,},
       displayColorPicker: false,
       inputColor:color
     }
@@ -44,6 +40,7 @@ class PhotoshopPickerComp extends React.Component {
   };
 
   render() {
+    console.log("---this.state.color--",this.state.color);
     const styles = reactCSS({
       'default': {
         color: {

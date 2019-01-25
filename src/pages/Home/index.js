@@ -9,6 +9,7 @@ import TextInput from '../../components/input';
 import Example from '../Example'
 import cookie from 'react-cookies';
 const rgbHex = require('rgb-hex');
+const hexRgb = require('hex-rgb');
 import styled from 'styled-components';
 
 import './index.scss';
@@ -25,27 +26,36 @@ const defaultProps = {
   colors: "default"
 };
 
+//全局主色
+let defaultValueAll = {
+  background: "#1E88E5",
+  active:"#1565C0",
+  hover:"#42A5F5",
+  "font-family":"Open Sans2",
+  "font-size":"14",
+  color:"#424242",
+  "border-color":"#1E88E5",
+  "item-bg":"#E7F4FD",
+  "item-hover":"#E7F4FD",
+}
+
+//次按钮部分
+let defaultValueButton = {
+  background: "#E0E0E0",
+  active:"#BDBDBD",
+  hover:"#EEEEEE", 
+  color:"#424242",
+}
+
 let defaultColor = {
   // 默认色
-  "default-color":"224,224,224",
-  "default-color-dark":"189,189,189",
-  "default-color-light":"238,238,238",
+  "default-color":defaultValueAll['background'],
+  "default-color-dark":defaultValueAll['active'],
+  "default-color-light":defaultValueAll['hover'],
   // 辅色
   "color-accent":"$palette-green-600",
   "color-accent-dark":"$palette-green-800",
   "color-accent-light":"$palette-green-400",
-}
-const _defaultColor = "30,136,229"; 
-
-let defaultValueAll = {
-  background: "#405569 !important",
-  active:"#405569 !important",
-  hover:"#405569 !important",
-  active:"#405569 !important",
-  "font-family":"Open Sans2 !important",
-  "font-size":"12 !important",
-  color:"#405569 !important",
-  "border-color":"#405569 !important",
 }
 
 class Home extends Component {
@@ -62,36 +72,33 @@ class Home extends Component {
       button:{}
     }
     let _styleJs = this.getObjToStyle(_style);
-    debugger;
     this.state = {
         data:{
             theme:{
               ...defaultColor,
               // 主题色
-              "primary-color":_defaultColor,
+              "primary-color":defaultValueAll['background'],
               // "primary-color":_defaultColor,
-              "primary-color-dark":_defaultColor,
-              "primary-color-light":_defaultColor,
+              "primary-color-dark":defaultValueAll['active'],
+              "primary-color-light":defaultValueAll['hover'],
 
               // 次按钮 
-              "secondary-color":_defaultColor,
-              "secondary-color-dark":_defaultColor,
-              "secondary-color-light":_defaultColor,
+              "secondary-color":defaultValueButton['background'],
+              "secondary-color-dark":defaultValueButton['active'],
+              "secondary-color-light":defaultValueButton['hover'],
 
               // 字体
-              "font-family-primary":"Open Sans",
-              "font-size-base":"12",
-              "text-color-base":_defaultColor,
-              "border-color":_defaultColor,
+              "font-family-primary":defaultValueAll['font-family'],
+              "font-size-base":defaultValueAll['font-size'],
+              "text-color-base":defaultValueAll['color'],
+              "border-color":defaultValueAll['border-color'],
 
                // 次按钮文本色
-              "button-secondary-text-color":_defaultColor,
+              "button-secondary-text-color":defaultValueAll['color'],
 
-              "item-hover-bg-color-base":_defaultColor,
-              "item-selected-bg-color-base":_defaultColor
-
-            },
-            "type":"me"
+              "item-hover-bg-color-base":defaultValueAll['item-hover'],
+              "item-selected-bg-color-base":defaultValueAll['item-bg'],
+            }
         },
         showLine:false,
         style:_style,
@@ -107,8 +114,22 @@ class Home extends Component {
           return null; 
   }
  
+  getHexRGBA=(color)=>{
+    let {red,green,blue,alpha} = hexRgb(color);
+    return red + "," + green + "," + blue + "," + alpha;
+  }
+
+  getParamToHex(param){
+    let newParam = JSON.parse(JSON.stringify(param));
+    for (const key in newParam) {
+      let color = newParam[key];
+      newParam[key] = color.indexOf("#")!=-1?this.getHexRGBA(color):color
+    }
+    return newParam;
+  }
+
   save = (param) => {
-    post("/saveThemeColor",{param}).then((data) => {
+    post("/saveThemeColor",this.getParamToHex(param.theme)).then((data) => {
         this.setState({showLine:false});
         this.changeTheme(data.name); 
     }, (error) => {
@@ -116,6 +137,7 @@ class Home extends Component {
         console.log(error);
     });
   }
+  
 
   changeTheme = (_fileName) => {
     let cssLinkId = "tinper-bee-theme";
@@ -153,6 +175,7 @@ class Home extends Component {
    * @memberof Home
    */
   getItemTypeColor = (item,color)=>{
+    debugger;
     switch(item.type){
       case "number": // 数字
         return color + " !important";
@@ -213,6 +236,10 @@ class Home extends Component {
         return " &:active { background : " + style + " }";
       case "hover":
         return " &:hover { background : " + style  + " }";
+      case "item-bg":
+        return "";
+      case "item-hover":
+        return "";
       default: 
       return [key] + ":" + style;
     }
@@ -255,8 +282,8 @@ class Home extends Component {
         {type:"color",label:"字体颜色",key:"text-color-base",style:"color"},
         {type:"hr"},
         {type:"color",label:"边框颜色",key:"border-color",style:"border-color"},
-        {type:"color",label:"条目hover背景色",key:"item-hover-bg-color-base",style:"background"},
-        {type:"color",label:"条目selected背景色",key:"item-selected-bg-color-base",style:"background"},
+        {type:"color",label:"条目hover背景色",key:"item-hover-bg-color-base",style:"item-bg"},
+        {type:"color",label:"条目selected背景色",key:"item-selected-bg-color-base",style:"item-hover"},
       ],
       type:"hr",
       button:[
@@ -326,6 +353,7 @@ class Home extends Component {
     let state = this.state;
     let _primary = state.styleJs.all;
     let _button = state.styleJs.button; 
+    console.log(" --render-- ",this.state);
     return (
       <div className={`${clsPrefix}-home ${this.props.className}`}>
          {/* <h2>官方主题</h2>

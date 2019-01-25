@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-const rgbHex = require('rgb-hex');
+// const rgbHex = require('rgb-hex');
 import './index.scss';
 
 import Button from 'bee-button';
@@ -60,25 +60,25 @@ class Example extends Component {
     const PrimaryModal = styled(Modal)`${_primary}`;
     const PrimaryRadio = styled(Radio)`{
       label:before{
-        box-shadow: inset 0 0 0 10px #${rgbHex(theme["primary-color"])}  !important;
-        border-color:#${rgbHex(theme["primary-color"])} !important;
+        box-shadow: inset 0 0 0 10px ${theme["primary-color"]}  !important;
+        border-color:${theme["primary-color"]} !important;
       }
     }`;
     const PrimaryPopconfirm = styled(Popconfirm)``;
     const PrimaryCheckbox = styled(Checkbox)`{
       label:before{
-        box-shadow: inset 0 0 0 10px #${rgbHex(theme["primary-color"])}  !important;
-        border-color:#${rgbHex(theme["primary-color"])} !important;
+        box-shadow: inset 0 0 0 10px ${theme["primary-color"]}  !important;
+        border-color:${theme["primary-color"]} !important;
       }
     }`;
     const PrimarySwitch = styled(Switch)`{
-      background-color:#${rgbHex(theme["primary-color"])} !important;
-      border-color:#${rgbHex(theme["primary-color"])} !important;
+      background-color:${theme["primary-color"]} !important;
+      border-color:${theme["primary-color"]} !important;
     }`;
     const PrimaryTransfer = styled(Transfer)`${_primary}`;
     const PrimaryProgressBar = styled(ProgressBar)`{
       .u-progress-bar{
-        background-color:#${rgbHex(theme["primary-color"])} !important;
+        background-color:${theme["primary-color"]} !important;
       }
     }`;
     const PrimaryBreadcrumb = styled(Breadcrumb)`${_primary}`;
@@ -89,7 +89,7 @@ class Example extends Component {
     const PrimaryCascader = styled(Cascader)`${_primary}`;
     const PrimaryRate = styled(Rate)`{
       .u-rate-star-full i{
-        color:#${rgbHex(theme["primary-color"])} !important;
+        color:${theme["primary-color"]} !important;
       }
     }`;
 
