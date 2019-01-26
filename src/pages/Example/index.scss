@@ -47,6 +47,10 @@
         color: #40BE00;
       }
     }
+    .component-bar{
+      margin-top: 20px;
+      margin-bottom: 50px;
+    }
     .component{
       margin-top: 20px;
       margin-bottom: 50px;
@@ -54,6 +58,14 @@
       &.interface{
         background: url('../../static/image/云平台主题.png');
       }
+
+
+      .navbar{
+        .u-container{
+          width: auto;
+        }
+      }
+
     }
   }
 

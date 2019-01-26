@@ -129,7 +129,8 @@ class Home extends Component {
   }
 
   save = (param) => {
-    post("/saveThemeColor",this.getParamToHex(param.theme)).then((data) => {
+    param.theme = this.getParamToHex(param.theme);
+    post("/saveThemeColor",param).then((data) => {
         this.setState({showLine:false});
         this.changeTheme(data.name); 
     }, (error) => {
@@ -177,11 +178,11 @@ class Home extends Component {
   getItemTypeColor = (item,color)=>{
     switch(item.type){
       case "number": // 数字
-        return color + " !important";
+        return color + "px !important";
       case "string": // 字符串
         return color + " !important";
       default: 
-      return "#"+rgbHex(color)+" !important";
+      return color+" !important";
     }
   }
 
@@ -232,9 +233,9 @@ class Home extends Component {
     let style  = item[key];
     switch(key){
       case "active":
-        return " &:active { background : " + style + " }";
+        return " &:active { background : " + style + " !important}";
       case "hover":
-        return " &:hover { background : " + style  + " }";
+        return " &:hover { background : " + style  + " !important}";
       case "item-bg":
         return "";
       case "item-hover":

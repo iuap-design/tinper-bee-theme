@@ -15,6 +15,12 @@ import Breadcrumb from 'bee-breadcrumb';
 import Select from 'bee-select';
 import Cascader from 'bee-cascader';
 import Rate from 'bee-rate';
+import Timeline from 'bee-timeline';
+import Navbar from 'bee-navbar';
+import FormControl from 'bee-form-control';
+import Badge from 'bee-badge';
+import ButtonGroup from 'bee-button-group';
+import Loadingstate from 'bee-loading-state';
 
 const defaultProps = {
   clsPrefix: "tinper-bee-theme",
@@ -53,28 +59,29 @@ class Example extends Component {
     let {styleJs:{all:_primary,button:_button},clsPrefix,theme} = this.props;
     //button
     // const PrimaryButton = styled(Button)`${_primary}`;
-    const PrimaryButton = styled(Button)`{
-
-    }`;
+    const PrimaryButton = styled(Button)`${_primary}
+      background-color:${theme["border-color"]} !important;
+      border-color:${theme["border-color"]} !important;
+    `;
     const SecondaryButton = styled(Button)`${_button}`;
 
     const PrimaryPagination = styled(Pagination)`${_primary}`;
     const PrimaryModal = styled(Modal)`${_primary}`;
     const PrimaryRadio = styled(Radio)`{
-      .is-checked{
-        label:before{
-          box-shadow: inset 0 0 0 10px #${theme["primary-color"]}  !important;
-          border-color:#${theme["primary-color"]} !important;
-        }
-      }
+      .u-radio-label::before{
+        -webkit-box-shadow:inset 0 0 0 10px ${theme["primary-color"]}  !important;
+        box-shadow:inset 0 0 0 10px ${theme["primary-color"]}  !important;
+        border-color:${theme["primary-color"]} !important;
+      } 
     }`;
     const PrimaryPopconfirm = styled(Popconfirm)``;
-    const PrimaryCheckbox = styled(Checkbox)`{
-      label:before{
-        box-shadow: inset 0 0 0 10px ${theme["primary-color"]}  !important;
-        border-color:${theme["primary-color"]} !important;
+    console.log(" primary-- ",theme["primary-color"]);
+    const PrimaryCheckbox = styled(Checkbox)`
+      .u-checkbox-label::before{
+        -webkit-box-shadow:inset 0 0 0 10px ${theme["primary-color"]}  !important;
+        box-shadow:inset 0 0 0 10px ${theme["primary-color"]}  !important;
       }
-    }`;
+    `;
     const PrimarySwitch = styled(Switch)`{
       background-color:${theme["primary-color"]} !important;
       border-color:${theme["primary-color"]} !important;
@@ -97,6 +104,36 @@ class Example extends Component {
       }
     }`;
 
+    const PrimaryTimeline = styled(Timeline)`{
+      .u-timeline-item-head-primary{
+        border-color:${theme["primary-color"]} !important;
+        color:${theme["primary-color"]} !important;
+      }
+    }`;
+
+    const PrimaryNavbar = styled(Navbar)`{
+      border-color:${theme["primary-color"]} !important;
+      background-color:${theme["primary-color"]} !important;
+      .u-navbar-inverse .u-navbar-collapse{
+        border-color:${theme["primary-color"]} !important;
+      }
+    }`;
+
+    const PrimaryBadge = styled(Badge)`{
+      .badge-single{
+        background-color:${theme["primary-color"]} !important;
+      }
+    }`;
+
+    const PrimaryButtonGroup = styled(ButtonGroup)``;
+
+    const PrimaryLoadingstate = styled(Loadingstate)`
+      .u-loading.u-loading-rotate>div{
+        border-color:${theme["primary-color"]} !important;
+      }
+    `;
+    
+
     return (
       <div className={`${clsPrefix}-example`}> 
 
@@ -105,6 +142,22 @@ class Example extends Component {
             <div className="component" >
               <PrimaryButton colors="primary" className="button">主按钮(primary)</PrimaryButton>
               <SecondaryButton colors="secondary" className="button">次按钮(secondary)</SecondaryButton>
+            </div>
+
+            <div className="title"><span className="titile-well">#</span>按钮组</div>
+            <div className="component" >
+              <PrimaryButtonGroup style={{ margin: 10 }}>
+                <PrimaryButton colors="primary">新增</PrimaryButton>
+                <PrimaryButton colors="primary">修改</PrimaryButton>
+                <PrimaryButton colors="primary">删除</PrimaryButton>
+              </PrimaryButtonGroup>
+            </div>
+
+            <div className="title"><span className="titile-well">#</span>状态按钮(Loadingstate)</div>
+            <div className="component" >
+              <PrimaryLoadingstate showBackDrop={false}	show={ true } colors="info">
+                confirm
+              </PrimaryLoadingstate>
             </div>
 
             {/* <div className="component" >
@@ -136,6 +189,11 @@ class Example extends Component {
                   <PrimaryButton colors="primary">点击</PrimaryButton>
               </PrimaryPopconfirm>
             </div>
+
+            <div className="title"><span className="titile-well">#</span>Badge</div>
+            <div className="component" >
+              <PrimaryBadge colors="primary" >8</PrimaryBadge>
+            </div>
             
             <div className="title"><span className="titile-well">#</span>Checkbox</div>
             <div className="component">
@@ -165,8 +223,8 @@ class Example extends Component {
             </div>
             
             <div className="title"><span className="titile-well">#</span>ProgressBar</div>
-            <div className="component">
-              <PrimaryProgressBar style={{width:30}} now = {40} />
+            <div className="component-bar">
+              <PrimaryProgressBar active now = {40} />
             </div>
             
             <div className="title"><span className="titile-well">#</span>Select</div>
@@ -189,6 +247,51 @@ class Example extends Component {
               <PrimaryRate value={3} />
             </div>
             
+            <div className="title"><span className="titile-well">#</span>Timeline</div>
+            <div className="component">
+              <PrimaryTimeline>
+                  <PrimaryTimeline.Item>Create a services site 2015-09-01</PrimaryTimeline.Item>
+                  <PrimaryTimeline.Item>Solve initial network problems 2015-09-01</PrimaryTimeline.Item>
+                  <PrimaryTimeline.Item>Technical testing 2015-09-01</PrimaryTimeline.Item>
+                  <PrimaryTimeline.Item>Network problems being solved 2015-09-01</PrimaryTimeline.Item>
+              </PrimaryTimeline>
+            </div>
+
+            <div className="title"><span className="titile-well">#</span>Navbar</div>
+            <div className="component navbar">
+
+            <PrimaryNavbar
+                    inverse
+                    expanded={this.state.expanded}
+                    onToggle={this.onToggle}>
+                    <PrimaryNavbar.Header>
+                        <PrimaryNavbar.Brand>
+                            <a href="#">React-FED</a>
+                        </PrimaryNavbar.Brand>
+                        <PrimaryNavbar.Toggle />
+                    </PrimaryNavbar.Header>
+
+                    <PrimaryNavbar.Collapse>
+                        <PrimaryNavbar.Nav
+                            selectedkey={this.state.selectedkey}
+                            onSelect={this.handleSelect}>
+                            <PrimaryNavbar.NavItem eventKey={1}>选项</PrimaryNavbar.NavItem>
+                            <PrimaryNavbar.NavItem href="#" eventKey={2}>
+                                选项
+                            </PrimaryNavbar.NavItem>
+                        </PrimaryNavbar.Nav>
+                        
+                        <PrimaryNavbar.Form pullRight>
+                            <FormControl type="text" placeholder="Search"/>
+                        </PrimaryNavbar.Form>
+                    </PrimaryNavbar.Collapse>
+                </PrimaryNavbar>
+
+            </div>
+
+
+            
+
             <div className="title"><span className="titile-well">#</span>界面</div>
             <div className="component interface"></div>
             {/* <div className="component" style={{paddingTop:200}}>

@@ -35,8 +35,8 @@ class PhotoshopPickerComp extends React.Component {
       inputColor:color.hex
     });
     // this.props.handleChange({[this.props.name]:color.hex});
-    let _color = color.rgb.r +","+color.rgb.g +","+color.rgb.b +","+color.rgb.a;
-    this.props.handleChange(_color);
+    // let _color = color.rgb.r +","+color.rgb.g +","+color.rgb.b +","+color.rgb.a;
+    this.props.handleChange(color.hex);
   };
 
   render() {
