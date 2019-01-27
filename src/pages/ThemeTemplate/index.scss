@@ -1,0 +1,41 @@
+.tinper-bee-theme-themetemplate{
+    width: 100%;
+    height: 100%;
+    padding-top: 38px;
+    .title{
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 22px;
+        margin-bottom: 34px;
+        .titile-well{
+          display: inline-block;
+          margin-right: 10px;
+          color: #40BE00;
+        }
+    }
+    .local-theme{
+        display: flex;
+        .local-theme-demo{
+            margin-right: 22px;
+            text-align: center;
+        }
+    }
+    .online{
+        margin-top: 77px;
+    }
+    .submit {
+        // padding-left: 90px;
+        padding-top: 90px;
+        p{
+          font-size: 16px;
+          font-weight: bold;
+          margin-bottom: 20px;
+        }
+        button{
+          margin-right:30px;
+        }
+    }
+}
+hr{
+    border-color: #C8C8C8;
+}

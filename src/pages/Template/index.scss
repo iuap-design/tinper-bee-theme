@@ -3,6 +3,7 @@
   height: 100%;
   margin: 20px;
   .header{
+    padding: 15px 0 55px 0;
     ul{
       margin-top: 20px;
       margin-bottom: 20px;
@@ -10,6 +11,9 @@
     ul>li{
       display: inline;
       margin: 10px;
+    }
+    p:first-child{
+      margin: 11px 0;
     }
   }
 }
@@ -60,9 +64,9 @@ a:active{
   width: 100%;
   line-height: 40px;
   color:rgba(66,66,66,1);
-  border-bottom: 2px #C8C8C8 solid;
+  border-bottom: 1px #C8C8C8 solid;
   display: flex;
-  margin-top: 14px;
+  margin-top: 15px;
   justify-content: left;
   li{
     width: 120px;
@@ -81,4 +85,7 @@ a:active{
       }
     }
   }
+}
+hr{
+  border-color: #C8C8C8;
 }
