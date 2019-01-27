@@ -68,7 +68,7 @@ const devConfig = {
         proxy: {
             "/api": {
                 target,
-                pathRewrite: { "^/api": "" },
+                pathRewrite: { "^/api": "/server" },
                 changeOrigin: true
             }
         }

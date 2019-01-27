@@ -142,7 +142,7 @@ class Home extends Component {
 
   changeTheme = (_fileName) => {
     let cssLinkId = "tinper-bee-theme";
-    document.getElementById(cookieId).href = (cdnUrl+_fileName);
+    document.getElementById(cookieId).href = (cdnUrl+"custorm/"+_fileName);
     // window.localStorage.setItem("tinper-bee-theme") = _fileName;
     document.cookie= cookieId + "="+_fileName;
     window.parent.postMessage(_fileName,serverUrl);
