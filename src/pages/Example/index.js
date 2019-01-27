@@ -293,7 +293,7 @@ class Example extends Component {
             
 
             <div className="title"><span className="titile-well">#</span>界面</div>
-            <div className="component interface"></div>
+            <img src={require('../../static/image/cloud-platform.png')} alt="界面" style={{width: 50 + "%",marginTop: 20 + 'px'}}/>
             {/* <div className="component" style={{paddingTop:200}}>
               <PrimarySlider defaultValue={20} />
             </div> */}

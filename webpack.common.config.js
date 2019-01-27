@@ -22,14 +22,17 @@ commonConfig = {
       use: ['babel-loader?cacheDirectory=true'],
       include: path.join(__dirname, 'src')
     }, {
-      test: /\.(png|jpg|gif|svg)$/,
+      test: /\.(png|jpg|gif|jpeg)$/,
+      exclude: /favicon\.png$/,
       use: [{
         loader: 'url-loader',
         options: {
-          limit: 8192
+          limit: 8196,
+          outputPath: 'images/',
+          name: "[name].[hash:8].[ext]"
         }
       }]
-    },{
+    }, {
       test: /\.md$/,
       use: [
         {
@@ -41,26 +44,13 @@ commonConfig = {
           }
         }
       ]
-    },
-    {
+    }, {
         test: /\.less$/,
         use: ['style-loader','css-loader', 'less-loader']
-    }, 
-    {
+    }, {
         test: /\.scss$/,
         use: ['style-loader','css-loader', 'sass-loader']
-    }, 
-    {
-        test: /\.(png|jpg|jpeg|gif)(\?.+)?$/,
-        exclude: /favicon\.png$/,
-        use: [{
-            loader: "url-loader",
-            options: {
-            limit: 8196,
-            name: "images/[name].[hash:8].[ext]"
-            }
-        }]
-        }, {
+    }, {
         test: /\.(eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
         use: [{
             loader: "file-loader",
