@@ -11,6 +11,7 @@ import cookie from 'react-cookies';
 const rgbHex = require('rgb-hex');
 const hexRgb = require('hex-rgb');
 import styled from 'styled-components';
+const lib = require('download-url-file');
 
 import './index.scss';
 
@@ -66,7 +67,6 @@ class Home extends Component {
     if(_cookie){
         document.getElementById(cookieId).href = (cdnUrl+_cookie);
     }
- 
     let _style = {
       all:defaultValueAll,
       button:{}
@@ -131,8 +131,10 @@ class Home extends Component {
   save = (param) => {
     param.theme = this.getParamToHex(param.theme);
     post("/saveThemeColor",param).then((data) => {
+      if(data.success){
         this.setState({showLine:false});
         this.changeTheme(data.name); 
+      }
     }, (error) => {
         this.setState({showLine:false});
         console.log(error);
@@ -142,7 +144,7 @@ class Home extends Component {
 
   changeTheme = (_fileName) => {
     let cssLinkId = "tinper-bee-theme";
-    document.getElementById(cookieId).href = (cdnUrl+"custorm/"+_fileName);
+    document.getElementById(cookieId).href = (cdnUrl+_fileName);
     // window.localStorage.setItem("tinper-bee-theme") = _fileName;
     document.cookie= cookieId + "="+_fileName;
     window.parent.postMessage(_fileName,serverUrl);
@@ -259,7 +261,9 @@ class Home extends Component {
   update = (e) => {
     this.setState({showLine:true});
     get("/Update").then((data) => {
+      if(data.success){
         this.setState({showLine:false});
+      }
     }, (error) => {
         this.setState({showLine:false});
         console.log(error);
@@ -347,6 +351,13 @@ class Home extends Component {
     }
   }
 
+  dowloand = (e)=>{
+    let _cookie = this.getCookie(cookieId);
+    lib.downloadFile(cdnUrl+_cookie?_cookie:"tinper-bee-theme");
+  }
+
+
+
   render() {
     let {clsPrefix} = this.props;
     let data = this.state.data.theme;
@@ -383,7 +394,10 @@ class Home extends Component {
           <div className='submit'>
             <p>你的定制版Tinper UI即将大功告成. 只要点击下边的按钮就可以下载了.</p>
             <Button colors="primary" className="login" onClick={this.submit}>开始构建</Button> 
-            <Button colors="primary" className="login" onClick={this.update}>更新代码</Button> 
+            <Button colors="primary" className="login" onClick={this.update}>更新代码</Button>
+
+            <Button colors="primary" className="login" onClick={this.dowloand}>下载</Button>
+
             {/* <Button colors="primary" className="login" onClick={this.submitNcc}>Ncc 主题build 保存</Button> */}
             {/* <Button colors="secondary" shape="border" className="reset">取消</Button> */}
           </div>

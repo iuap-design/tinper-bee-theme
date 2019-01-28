@@ -68,6 +68,7 @@
     "bee-timeline": "^2.0.0",
     "bee-transfer": "^2.0.0",
     "classnames": "^2.2.5",
+    "download-url-file": "0.0.2",
     "fetch-plugin": "^1.2.5",
     "fetch-timeout": "0.0.2",
     "hex-rgb": "^3.0.0",
