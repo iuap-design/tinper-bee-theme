@@ -54,11 +54,11 @@ class Template extends Component {
          <h2>定制主题</h2>
          <hr />
         <div className="header">
-          {/* <ul>
+          <ul>
             <li><a href="javascript:void(0)" onClick={this.themClick} id="ncc" >NCC 主题</a></li>
             <li><a href="javascript:void(0)" onClick={this.themClick} id="yxy" >营销云 主题</a></li>
             <li><a href="javascript:void(0)" onClick={this.themClick} id="hxlh" >华新丽华 主题</a></li>
-          </ul> */}
+          </ul>
           <p>通过自定义组tinper UI组件、less变量和Query 插件, 定制一份属于你自己的tinper UI版本吧.</p>
           <p>说明: 这是一个在线的定制打包系统. 通常, 如果我们不需要一些模块, 或者需要更改一些组件的颜色、大小, 
             我们需要在本地配置开发环境；对于对前端工具 熟悉的同学来讲, 是相对容易的, 但对于一些对这块不熟悉的同

@@ -21,6 +21,7 @@ import FormControl from 'bee-form-control';
 import Badge from 'bee-badge';
 import ButtonGroup from 'bee-button-group';
 import Loadingstate from 'bee-loading-state';
+import { Col, Row } from 'bee-layout';
 
 const defaultProps = {
   clsPrefix: "tinper-bee-theme",
@@ -138,12 +139,15 @@ class Example extends Component {
       <div className={`${clsPrefix}-example`}> 
 
         <div className="example" >
+        <Row>
+          <Col md={4} xs={4} sm={4}>
             <div className="title"><span className="titile-well">#</span>Button</div>
             <div className="component" >
               <PrimaryButton colors="primary" className="button">主按钮(primary)</PrimaryButton>
               <SecondaryButton colors="secondary" className="button">次按钮(secondary)</SecondaryButton>
             </div>
-
+          </Col>
+          <Col md={4} xs={4} sm={4}>
             <div className="title"><span className="titile-well">#</span>按钮组</div>
             <div className="component" >
               <PrimaryButtonGroup style={{ margin: 10 }}>
@@ -152,29 +156,18 @@ class Example extends Component {
                 <PrimaryButton colors="primary">删除</PrimaryButton>
               </PrimaryButtonGroup>
             </div>
-
+          </Col>
+          <Col md={4} xs={4} sm={4}>
             <div className="title"><span className="titile-well">#</span>状态按钮(Loadingstate)</div>
             <div className="component" >
               <PrimaryLoadingstate showBackDrop={false}	show={ true } colors="info">
                 confirm
               </PrimaryLoadingstate>
             </div>
-
-            {/* <div className="component" >
-              <PrimaryPagination
-                first
-                last
-                prev
-                next
-                maxButtons={5}
-                boundaryLinks 
-                activePage={1}
-                showJump={true}
-                total={100}
-                dataNum={2}
-              />
-            </div> */}
-
+          </Col>
+        </Row>
+        <Row>
+          <Col md={4} xs={4} sm={4}>
             <div className="title"><span className="titile-well">#</span>Radio</div>
             <div className="component" >
               <PrimaryRadio.RadioGroup name="lol" selectedValue={this.state.selectedValue} onChange={this.handleChange.bind(this)}>
@@ -182,19 +175,24 @@ class Example extends Component {
                   <PrimaryRadio value="edg" >女</PrimaryRadio> 
               </PrimaryRadio.RadioGroup>
             </div>
-
+          </Col>
+          <Col md={4} xs={4} sm={4}>
             <div className="title"><span className="titile-well">#</span>Popconfirm</div>
             <div className="component" >
               <PrimaryPopconfirm trigger="click" placement="right" content='您喜欢使用tinper-bee组件库吗？'>
                   <PrimaryButton colors="primary">点击</PrimaryButton>
               </PrimaryPopconfirm>
             </div>
-
+          </Col>
+          <Col md={4} xs={4} sm={4}>
             <div className="title"><span className="titile-well">#</span>Badge</div>
             <div className="component" >
               <PrimaryBadge colors="primary" >8</PrimaryBadge>
             </div>
-            
+          </Col>
+        </Row>
+        <Row>
+          <Col md={4} xs={4} sm={4}>
             <div className="title"><span className="titile-well">#</span>Checkbox</div>
             <div className="component">
                 <PrimaryCheckbox
@@ -214,19 +212,24 @@ class Example extends Component {
                     半选
                 </PrimaryCheckbox>
             </div>
-            
+          </Col>
+          <Col md={4} xs={4} sm={4}>
             <div className="title"><span className="titile-well">#</span>Switch</div>
             <div className="component">
               <PrimarySwitch
                 checked={true}
               />
             </div>
-            
-            <div className="title"><span className="titile-well">#</span>ProgressBar</div>
-            <div className="component-bar">
-              <PrimaryProgressBar active now = {40} />
+          </Col>
+          <Col md={4} xs={4} sm={4}>
+            <div className="title"><span className="titile-well">#</span>Rate</div>
+            <div className="component">
+              <PrimaryRate value={3} />
             </div>
-            
+          </Col>
+        </Row>
+        <Row>
+          <Col md={4} xs={4} sm={4}>
             <div className="title"><span className="titile-well">#</span>Select</div>
             <div className="component">
               <PrimarySelect
@@ -241,12 +244,8 @@ class Example extends Component {
                 <Option value="yiminghe">yuzhao</Option>
               </PrimarySelect>
             </div>
-            
-            <div className="title"><span className="titile-well">#</span>Rate</div>
-            <div className="component">
-              <PrimaryRate value={3} />
-            </div>
-            
+          </Col>
+          <Col md={4} xs={4} sm={4}>
             <div className="title"><span className="titile-well">#</span>Timeline</div>
             <div className="component">
               <PrimaryTimeline>
@@ -256,39 +255,63 @@ class Example extends Component {
                   <PrimaryTimeline.Item>Network problems being solved 2015-09-01</PrimaryTimeline.Item>
               </PrimaryTimeline>
             </div>
+          </Col>
+        </Row>
+        <Row>
+          <div className="title"><span className="titile-well">#</span>ProgressBar</div>
+          <div className="component-bar">
+            <PrimaryProgressBar active now = {40} />
+          </div>
+        </Row>
+        <Row>
+          <div className="title"><span className="titile-well">#</span>Navbar</div>
+          <div className="component navbar">
 
-            <div className="title"><span className="titile-well">#</span>Navbar</div>
-            <div className="component navbar">
+          <PrimaryNavbar
+            inverse
+            expanded={this.state.expanded}
+            onToggle={this.onToggle}>
+            <PrimaryNavbar.Header>
+                <PrimaryNavbar.Brand>
+                    <a href="#">React-FED</a>
+                </PrimaryNavbar.Brand>
+                <PrimaryNavbar.Toggle />
+            </PrimaryNavbar.Header>
 
-            <PrimaryNavbar
-                    inverse
-                    expanded={this.state.expanded}
-                    onToggle={this.onToggle}>
-                    <PrimaryNavbar.Header>
-                        <PrimaryNavbar.Brand>
-                            <a href="#">React-FED</a>
-                        </PrimaryNavbar.Brand>
-                        <PrimaryNavbar.Toggle />
-                    </PrimaryNavbar.Header>
+            <PrimaryNavbar.Collapse>
+                <PrimaryNavbar.Nav
+                    selectedkey={this.state.selectedkey}
+                    onSelect={this.handleSelect}>
+                    <PrimaryNavbar.NavItem eventKey={1}>选项</PrimaryNavbar.NavItem>
+                    <PrimaryNavbar.NavItem href="#" eventKey={2}>
+                        选项
+                    </PrimaryNavbar.NavItem>
+                </PrimaryNavbar.Nav>
+                
+                <PrimaryNavbar.Form pullRight>
+                    <FormControl type="text" placeholder="Search"/>
+                </PrimaryNavbar.Form>
+            </PrimaryNavbar.Collapse>
+            </PrimaryNavbar>
 
-                    <PrimaryNavbar.Collapse>
-                        <PrimaryNavbar.Nav
-                            selectedkey={this.state.selectedkey}
-                            onSelect={this.handleSelect}>
-                            <PrimaryNavbar.NavItem eventKey={1}>选项</PrimaryNavbar.NavItem>
-                            <PrimaryNavbar.NavItem href="#" eventKey={2}>
-                                选项
-                            </PrimaryNavbar.NavItem>
-                        </PrimaryNavbar.Nav>
-                        
-                        <PrimaryNavbar.Form pullRight>
-                            <FormControl type="text" placeholder="Search"/>
-                        </PrimaryNavbar.Form>
-                    </PrimaryNavbar.Collapse>
-                </PrimaryNavbar>
-
-            </div>
-
+          </div>
+        </Row>
+            {/* <div className="component" >
+              <PrimaryPagination
+                first
+                last
+                prev
+                next
+                maxButtons={5}
+                boundaryLinks 
+                activePage={1}
+                showJump={true}
+                total={100}
+                dataNum={2}
+              />
+            </div> */}
+            
+            
 
             {/* <div className="component" style={{paddingTop:200}}>
               <PrimarySlider defaultValue={20} />
