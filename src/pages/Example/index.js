@@ -27,7 +27,7 @@ const defaultProps = {
   colors: "default"
 };
 
-const cdnUrl = window.tinperCdnUrl?window.tinperCdnUrl:"//iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/theme/";
+const cdnUrl = window.tinperCdnUrl?window.tinperCdnUrl:"http://iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/theme/";
 const cookieId = window.tinperCookieId?window.tinperCookieId:"tinper-bee-theme";
 
 class Example extends Component {

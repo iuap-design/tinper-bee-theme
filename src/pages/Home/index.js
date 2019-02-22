@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import { post,get } from 'public/utils';
-import { Label, FormControl ,Loading} from 'tinper-bee';
+import { Label, FormControl ,Loading,Icon} from 'tinper-bee';
 import Button from 'bee-button';
+import Select from 'bee-select';
 import Form from 'bee-form';
+import Dropdown from 'bee-dropdown';
+import Menu from 'bee-menus';
 import PhotoshopPickerComp from '../../components/color';
 import TextInput from '../../components/input';
 import Example from '../Example'
 import cookie from 'react-cookies';
 const rgbHex = require('rgb-hex');
-const hexRgb = require('hex-rgb');
-import styled from 'styled-components';
-const lib = require('download-url-file');
+const hexRgb = require('hex-rgb'); 
+
+const { Item } = Menu;
+
 
 import './index.scss';
 
 const serverUrl = window.tinperServerUrl;
-const cdnUrl = window.tinperCdnUrl?window.tinperCdnUrl:"//iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/theme/";
+const cdnUrl = window.tinperCdnUrl?window.tinperCdnUrl:"http://iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/theme/";
 const fileName = window.tinperFileName?window.tinperFileName:"tinper-bee";
 const cookieId = window.tinperCookieId?window.tinperCookieId:"tinper-bee-theme";
 
@@ -48,6 +52,14 @@ let defaultValueButton = {
   color:"#424242",
 }
 
+//table 部分颜色
+let defaultValueTable = {
+  background: "#E0E0E0",
+  color:"#424242",
+  borderColor:"#ccc"
+}
+
+
 let defaultColor = {
   // 默认色
   "default-color":defaultValueAll['background'],
@@ -59,19 +71,25 @@ let defaultColor = {
   "color-accent-light":"$palette-green-400",
 }
 
+let _versions = [
+  {value:"1.6.10-alpha.2"},
+  {value:"1.6.10-alpha.3"}
+]
+
 class Home extends Component {
 
   constructor(props) {
     super(props);
     let _cookie = this.getCookie(cookieId);
     if(_cookie){
-        document.getElementById(cookieId).href = (cdnUrl+_cookie);
+        document.getElementById(cookieId).href = (cdnUrl+_cookie+".css");
     }
     let _style = {
       all:defaultValueAll,
       button:{}
     }
     let _styleJs = this.getObjToStyle(_style);
+    this.version = _versions[0].value;
     this.state = {
         data:{
             theme:{
@@ -98,8 +116,17 @@ class Home extends Component {
 
               "item-hover-bg-color-base":defaultValueAll['item-hover'],
               "item-selected-bg-color-base":defaultValueAll['item-bg'],
+
+              // Table 细化样式变量：
+              // 表头背景色
+              "table-header-background-color":defaultValueTable['background'],
+              // 表头文字颜色
+              "table-header-text-color": defaultValueTable['color'],
+              // 表格分割线颜色
+              "table-border-color-base": defaultValueTable['borderColor'],
             }
         },
+        // version:"",
         showLine:false,
         style:_style,
         styleJs:_styleJs
@@ -130,8 +157,8 @@ class Home extends Component {
 
   save = (param) => {
     param.theme = this.getParamToHex(param.theme);
-    post("/saveThemeColor",param).then((data) => {
-      if(data.success){
+    post("/package",param).then((data) => {
+      if(data){
         this.setState({showLine:false});
         this.changeTheme(data.name); 
       }
@@ -155,14 +182,20 @@ class Home extends Component {
     this.changeTheme(_FileName);
   }
 
-  submit = (e) => {
-      this.setState({showLine:true});
-      if(this.getCookie(cookieId) !== "tinper-bee.css"){
-        cookie.remove(cookieId);
-      }
-      let aa = this.getCookie(cookieId)
-      this.save(this.state.data);
+  
+  onBuildSelect = ({ key }) => {
+    this.version = key;
+    this.setState({showLine:true});
+      this.save({...this.state.data,version:key});
   }
+  // submit = (e) => {
+  //     this.setState({showLine:true});
+  //     if(this.getCookie(cookieId) !== "tinper-bee.css"){
+  //       cookie.remove(cookieId);
+  //     }
+  //     let aa = this.getCookie(cookieId)
+  //     this.save({...this.state.data,version:this.version});
+  // }
   submitNcc = (e) => {
     this.setState({showLine:true});
     this.save({type:"ncc"});
@@ -260,14 +293,23 @@ class Home extends Component {
    */
   update = (e) => {
     this.setState({showLine:true});
-    get("/Update").then((data) => {
-      if(data.success){
+    post("/updateAll",{version:[this.version]}).then((data) => {
+      if(data){
         this.setState({showLine:false});
       }
     }, (error) => {
         this.setState({showLine:false});
         console.log(error);
     });
+    // this.setState({showLine:true});
+    // get("/Update").then((data) => {
+    //   if(data.success){
+    //     this.setState({showLine:false});
+    //   }
+    // }, (error) => {
+    //     this.setState({showLine:false});
+    //     console.log(error);
+    // });
   }
 
   /**
@@ -353,18 +395,45 @@ class Home extends Component {
 
   dowloand = (e)=>{
     let _cookie = this.getCookie(cookieId);
-    lib.downloadFile(cdnUrl+_cookie?_cookie:"tinper-bee-theme");
+    let _url = cdnUrl+(_cookie?_cookie:"tinper-bee-theme")+".css";
+    this.downloadData(_url,"tinper-bee-theme.css");
   }
 
+  downloadData=(excelUrl,reportName)=>{
+      let token = "Bearer " + sessionStorage.getItem('token')
+      fetch(excelUrl, {
+          headers: {
+              'Content-type': 'application/json;charset=UTF-8',
+              'Authorization': token
+          }
+      }).then(res => res.blob().then(blob => {
+          var filename=`${reportName}`
+          if (window.navigator.msSaveOrOpenBlob) {
+              navigator.msSaveBlob(blob, filename);  //兼容ie10
+          } else {
+              var a = document.createElement('a');
+              document.body.appendChild(a) //兼容火狐，将a标签添加到body当中
+              var url = window.URL.createObjectURL(blob);   // 获取 blob 本地文件连接 (blob 为纯二进制对象，不能够直接保存到磁盘上)
+              a.href = url;
+              a.download = filename;
+              a.target='_blank'  // a标签增加target属性
+              a.click();
+              a.remove()  //移除a标签
+              window.URL.revokeObjectURL(url);
+          }
+      }))
+  }
 
+  // versionHandleChange = value => {
+  //   this.version = value;
+  // };
 
   render() {
     let {clsPrefix} = this.props;
     let data = this.state.data.theme;
     let state = this.state;
     let _primary = state.styleJs.all;
-    let _button = state.styleJs.button; 
-    console.log(" --render-- ",this.state);
+    let _button = state.styleJs.button;
     return (
       <div className={`${clsPrefix}-home ${this.props.className}`}>
          {/* <h2>官方主题</h2>
@@ -391,10 +460,40 @@ class Home extends Component {
              <Example styleJs={state.styleJs} theme={data} />
           </div>
 
+          {/* <div>
+            请选择版本号:
+            <Select
+              defaultValue={_versions[0].value}
+              onChange={this.versionHandleChange}
+              showSearch={true}
+            >
+            {
+              _versions.map(da=><Option value={da.value}>{da.value}</Option>)
+            }
+            </Select> 
+          </div> */}
+
+
           <div className='submit'>
             <p>你的定制版Tinper UI即将大功告成. 只要点击下边的按钮就可以下载了.</p>
-            <Button colors="primary" className="login" onClick={this.submit}>开始构建</Button> 
-            <Button colors="primary" className="login" onClick={this.update}>更新代码</Button>
+            
+            <Dropdown
+                trigger={['click']}
+                overlay={
+                  <Menu
+                    onSelect={this.onBuildSelect}>
+                    {
+                      _versions.map(da=><Item key={da.value}>{da.value}</Item>)
+                    }
+                  </Menu>
+                }
+                animation="slide-up"
+                // onVisibleChange={onVisibleChange}
+                >
+                <Button colors="primary" className="login" > 立即下载 <Icon type="uf-treearrow-down" /> </Button>
+            </Dropdown>
+            
+            {/* <Button colors="primary" className="login" onClick={this.update}>更新代码  </Button> */}
 
             <Button colors="primary" className="login" onClick={this.dowloand}>下载</Button>
 

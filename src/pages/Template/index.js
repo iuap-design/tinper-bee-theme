@@ -5,7 +5,7 @@ import classnames from 'classnames';
 
 import './index.scss';
 
-const cdnUrl = window.tinperCdnUrl?window.tinperCdnUrl:"//iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/theme/";
+const cdnUrl = window.tinperCdnUrl?window.tinperCdnUrl:"http://iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/theme/";
 const cookieId = window.tinperCookieId?window.tinperCookieId:"tinper-bee-theme";
 
 const defaultProps = {
