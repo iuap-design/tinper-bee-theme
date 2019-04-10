@@ -58,6 +58,24 @@ const fetchTools = {
             return Promise.reject(new Error('请求失败'));
         });
     },
+    fetchUrl(url, options) {
+        return fetch(url, options).then((response) => {
+            if (response.ok) {
+                return response.text().then((text) => {
+                    if (text) {
+                        try {
+                            let result = JSON.parse(text);
+                            return Promise.resolve(result);
+                        } catch (e) {
+                            return Promise.reject(new Error('接口返回数据无法解析'));
+                        }
+                    }
+                    return Promise.reject(new Error('接口未返回数据'));
+                });
+            }
+            return Promise.reject(new Error('请求失败'));
+        });
+    },
     options(method = 'get', options = {}) {
         return {
             method: method.toUpperCase(),
@@ -135,6 +153,12 @@ export function get(oriUrl, oriParams = {}) {
     return fetch(url, options());
 }
 
+export function getUrl(oriUrl, oriParams = {}) { 
+    const {
+        fetchUrl
+    } = fetchTools;
+    return fetchUrl(oriUrl,{});
+}
 
 export function dateDiff(hisTime,nowTime){
     if(!arguments.length) return '';

@@ -17,10 +17,8 @@ class TextInput extends React.Component {
     let {placeholder,label} = this.props;
     return (
       <div className="color-input">
-
         <Label>{label}</Label>
-        <FormControl placeholder={"请输入 " + placeholder} value={this.state.inputColor} onChange={this.handleChange} /> 
-
+        <FormControl placeholder={"请输入 " + placeholder}  size="sm" value={this.state.inputColor} onChange={this.handleChange} /> 
       </div>
     )
   }

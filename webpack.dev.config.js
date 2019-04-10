@@ -61,7 +61,7 @@ const devConfig = {
         })
     ],
     devServer: {
-        port: 3000,
+        port: 3003,
         contentBase: path.join(__dirname, './dist'),
         historyApiFallback: true,
         host: '0.0.0.0',
@@ -69,7 +69,14 @@ const devConfig = {
             "/api": {
                 target,
                 pathRewrite: { "^/api": "/server" },
-                changeOrigin: true
+                changeOrigin: true,
+                logLevel:"debug"
+            },
+            "/tinper-bee":{
+                target:"https://registry.npmjs.org/",
+                // pathRewrite: { "^/tinper-bee": "/npmtaobao" },
+                changeOrigin: true,
+                logLevel:"debug"
             }
         }
     }

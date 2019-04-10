@@ -32,7 +32,7 @@ class LocalTheme extends Component {
         {
           activeNum === index? 
           <Icon type="uf-correct"></Icon> 
-          : 
+          :
           <Button shape="round" colors="primary" onClick={() => this.preview(index)}>预览</Button>
         }
       </div>

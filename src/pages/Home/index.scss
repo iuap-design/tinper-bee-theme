@@ -1,3 +1,5 @@
+@import  '../../../node_modules/bee-colorpicker/build/ColorPicker.css';
+
 .tinper-bee-theme-home{
   width: 100%;
   height: 100%;
@@ -19,40 +21,103 @@
   .primry{
     width: 100%;
     height: 100%;
-    margin-top: 30px;
+    margin-top: 10px;
 
-    .color-input label{
-      width: 200px;
+    // .color-input label{
+    //   // width: 200px;
+    // }
+    // .color-input{
+    //   // width: 450px;
+    // }
+
+    .u-form-item {
+      padding-left: 0px;
+      padding-right: 0px;
     }
-    .color-input{
-      width: 450px;
+    .u-row > div {
+      padding-left: 0px;
+      padding-right: 0px;
     }
+
+  } 
+  .btn-cont {
+    position: relative;
+    margin-bottom: 120px;
   }
-  .submit {
-    // padding-left: 90px;
-    padding-top: 90px;
-    padding-bottom: 200px;
+  .sub-cont{
+    position:fixed;
+    bottom: 0px;
+    left: 0px;
+    height: 80px;
+    line-height: 80px;
+    width: 100%;
+    z-index: 10;
+    background: #fff;
+  }
+  .annotation{
+    display: inline-flex;
     p{
       font-size: 16px;
       font-weight: bold;
-      margin-bottom: 20px;
-    }
-    button{
-      margin-right:30px;
     }
   }
+  .submit{
+    width: 300px;
+    height: 100%;
+    float: right;
+    text-align: center;
+    button{
+      height: 50px;
+      width: 120px;
+    }
 
+  }
   hr{
     width: 100%;
   }
 
+  .online{
+    clear: both;
+  }
   .online.title{
-    margin-top: 90px; 
+    // margin-top: 40px; 
+    padding: 20px;
+    padding-left: 0;
+    padding-bottom: 10px;
   }
 
   .exampleall{
-   
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(240,240,240,1);  
   }
+
+  .exampleall-app{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    border: 1px solid rgba(240,240,240,1);
+    .example-left{
+      width: 240px;
+      height: 100%;
+      float: left;
+    }
+    .example-right{
+      height: 100%;
+      float: left;
+      width: calc(100% - 250px);
+    }
+  }
+
+  .exampleall-app:after{
+    display: block;
+    content: '';
+    clear: both;
+    // border: 1px solid #f0f0f0;
+    box-sizing: border-box;
+  }
+
+
   .title{
     font-weight: bold;
     font-size: 16px;
@@ -89,6 +154,39 @@
   a:active{
     color: yellow;
   }
+
+
+  .home-head{
+    .u-search-header{
+      display: none; 
+    }
+  }
+
+  .search-panel-cont{
+    background: rgba(250,250,250,1);
+    .u-search{
+      background: transparent !important;
+      padding-top: 20px;
+    }
+  }
+
+  .clear{
+    clear: both;
+  }
+
+  .version{
+    padding-top: 20px;
+    // margin-top: 206px;
+    label{
+      padding-right: 10px;
+    }
+
+  }
+
+  .input_cont{
+
+  }
+
 
 
 }

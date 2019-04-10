@@ -1,76 +1,106 @@
 .tinper-bee-theme-example{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 500px;
+  border: 1px solid #F0F0F0;
+  padding: 5px;
+  // border-left: 0px;
+
+  .u-label {
+    min-width: 80px;
+    white-space: nowrap;
+    text-align: right;
+  }
+  .u-checkbox-group,
+  .col{
+    display: inline-flex;
+  }
+  .u-form-item,
+  .u-row >div{
+    padding-left:0px;
+    padding-right:0px;
+  }
+  .u-search .u-panel{
+    padding-top: 0px;
+  }
+  .u-search-resident{
+    padding-bottom: 0px;
+    padding-top: 0px;
+  }
+
+  .demo-head{
+  box-sizing: border-box;
+  }
+
+  .demo-body{
+  margin: 0 -20px;
+  }
+
+  .demo-head .u-row{
+  margin-left: -35px;
+  margin-right: -35px;
+  }
+
+
+  // .index_search{
+  //   overflow-y: scroll;
+  //   overflow-x: hidden;
+  //   width: 240px;
+  //   height: 500px;
+  // }
+  // .index_grid{
+  //   height: 500px;
+  //   overflow-y: scroll;
+  //   overflow-x: hidden;
+  // }
+}
+
+
+.tinper-bee-theme-context{
   width: 100%;
-  height: 100%;
-  .header{
-    ul>li{
-      display: inline;
-      margin: 10px;
-    }
+  .left{
+    float: left;
   }
-
-  .primry{
-    width: 100%;
-    height: 100%;
-    margin-top: 30px;
-
-    .color-input label{
-      width: 200px;
-    }
-    .color-input{
-      width: 450px;
-    }
+  .right{
+    float: right;
   }
-  .submit {
-    padding-left: 90px;
-    padding-top: 100px;
-    button{
-      margin-right:30px;
-    }
+}
+
+.menu_context{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 240px;
+  height: 500px;
+  // border: 0px solid #F0F0F0;
+  // border-bottom: 1px solid #F0F0F0;
+  position: relative;
+}
+// .menu_context ul{
+//   min-height: 500px;
+// }
+
+// .men_ul{
+//   position: absolute;
+//   left: 0px;
+//   right: 0px;
+//   bottom: 0px;
+//   top: 0px;
+// }
+
+.operation-btn{
+  .u-button{
+    min-width: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    line-height: 12px;
   }
+}
 
-  hr{
-    width: 100%;
-  }
+.u-table-fixed-right .u-table-tbody td{
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
 
-  .online{
-    // padding-top: 60px;
-  }
-
-  .example{
-    .u-row{
-      margin-bottom: 50px;
-    }
-    .title{
-      font-weight: bold;
-      font-size: 16px;
-      line-height: 22px;
-      .titile-well{
-        display: inline-block;
-        margin-right: 10px;
-        color: #40BE00;
-      }
-    }
-    .component-bar{
-      margin-top: 20px;
-      margin-bottom: 50px;
-    }
-    .component{
-      margin-top: 20px;
-      margin-bottom: 50px;
-      display: flex;
-
-
-      .navbar{
-        .u-container{
-          width: auto;
-        }
-      }
-
-    }
-  }
-
-  .button{
-    margin: 10px;
-  }
-  
+.home-head{
+  margin-bottom: -50px;
 }

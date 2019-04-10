@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LocalTheme from 'components/LocalTheme';
 import Button from 'bee-button';
-
+import Downloader from 'js-file-downloader';
 import './index.scss';
 
 const cdnUrl = window.tinperCdnUrl?window.tinperCdnUrl:"//iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/theme/";
@@ -35,6 +35,13 @@ class ThemeTemplate extends Component {
       active : index
     })
   }
+
+  downloadClick = () => {
+    let links = [ href1, href2, href3 ];
+    new Downloader({ 
+      url: links[this.state.active]
+    });
+}
   
   render() {
     let {clsPrefix} = this.props; 
@@ -44,7 +51,7 @@ class ThemeTemplate extends Component {
       <img src={img2} alt="营销云主题"/>,
       <img src={img3} alt="NCC主题"/>
     ];
-    let links = [ href1, href2, href3 ];
+    
     return (
       <div className={`${clsPrefix}-themetemplate ${this.props.className}`}>
         <div className="title"><span className="titile-well">#</span>官方主题</div>
@@ -58,7 +65,14 @@ class ThemeTemplate extends Component {
           {interfaces[active]}
           <div className='submit'>
             <p>你的定制版Tinper UI即将大功告成. 只要点击下边的按钮就可以下载了.</p>
-            <Button colors="primary" className="login" >立即下载</Button> 
+             
+            <Button colors="primary" className="login" onClick={this.downloadClick} >立即下载</Button>
+           
+            {/* <a href="http://iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/theme/tinper-bee.css" 
+            download="download"  target='_blank'>
+            dddd fff
+            </a> */}
+
           </div>
        </div>
       </div>

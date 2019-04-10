@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+// import 'tinper-bee/assets/tinper-bee.css';
 // 引入路由
 import getRouter from 'router/router';
 // 引入css样式

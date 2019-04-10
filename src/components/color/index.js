@@ -3,6 +3,7 @@ import reactCSS from 'reactcss';
 import { SketchPicker } from 'react-color';
 const hexRgb = require('hex-rgb');
 // import { PhotoshopPicker } from 'react-color'
+import ColorPicker from 'bee-colorpicker';
 import {Label, FormControl } from 'tinper-bee';
 import './index.less';
 
@@ -30,17 +31,19 @@ class PhotoshopPickerComp extends React.Component {
   };
 
   handleChange = (color) => {
+    debugger;
     this.setState({ 
       color: color.rgb,
       inputColor:color.hex
     });
+    debugger;
     // this.props.handleChange({[this.props.name]:color.hex});
     // let _color = color.rgb.r +","+color.rgb.g +","+color.rgb.b +","+color.rgb.a;
     this.props.handleChange(color.hex);
   };
 
   render() {
-    console.log("---this.state.color--",this.state.color);
+    // console.log("---this.state.color--",this.state.color);
     const styles = reactCSS({
       'default': {
         color: {
@@ -78,15 +81,23 @@ class PhotoshopPickerComp extends React.Component {
       <div className="color-input">
 
         <Label>{label}</Label>
-        <FormControl placeholder={placeholder} value={this.state.inputColor} onChange={(value)=>{this.setState({inputColor:value})}} /> 
 
-        <div className="color" style={ styles.swatch } onClick={ this.handleClick }>
+        <ColorPicker placeholder={placeholder} value={this.state.inputColor} 
+        onChange={ this.handleChange } 
+        // onChange={(value)=>{this.setState({inputColor:value})}} 
+        /> 
+
+        {/* <FormControl placeholder={placeholder} value={this.state.inputColor} onChange={(value)=>{
+          console.log(" --- ",value);
+          this.setState({inputColor:value})}} />  */}
+
+        {/* <div className="color" style={ styles.swatch } onClick={ this.handleClick }>
           <div style={ styles.color } />
         </div>
         { this.state.displayColorPicker ? <div style={ styles.popover }>
           <div style={ styles.cover } onClick={ this.handleClose }/>
           <SketchPicker color={ this.state.color } onChange={ this.handleChange } />
-        </div> : null }
+        </div> : null } */}
 
       </div>
     )

@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-import { post,get } from 'public/utils';
-import { Label, FormControl ,Loading,Icon} from 'tinper-bee';
-import Button from 'bee-button';
-import Select from 'bee-select';
-import Form from 'bee-form';
-import Dropdown from 'bee-dropdown';
-import Menu from 'bee-menus';
+import cookie from 'react-cookies';
+import { post,get,getUrl } from 'public/utils';
+import { Label, FormControl ,Icon,Form,Select,Button,Dropdown,Menu,
+  Row, Col,
+} from 'tinper-bee';
+import Loading from 'bee-loading';
 import PhotoshopPickerComp from '../../components/color';
 import TextInput from '../../components/input';
-import Example from '../Example'
-import cookie from 'react-cookies';
+import ExampleTinper from '../Example-Tinper';
+import Example from '../Example';
+import SearchPanel from 'bee-search-panel';
+import ExampleMenus from '../Example/ExampleMenus'; 
+
+let HeadContainer = SearchPanel.HeadContainer;
+let AdvancedContainer = SearchPanel.AdvancedContainer;
+const Option = Select.Option;
+
 const rgbHex = require('rgb-hex');
 const hexRgb = require('hex-rgb'); 
 
@@ -40,8 +45,12 @@ let defaultValueAll = {
   "font-size":"14",
   color:"#424242",
   "border-color":"#1E88E5",
+  "border-radius":"3",
   "item-bg":"#E7F4FD",
-  "item-hover":"#E7F4FD",
+  "item-hover":"#EBECF0",// 最新
+  "table-header-background-color":"#E0E0E0",
+  "table-header-text-color":"#ebecf0",
+  "table-border-color-base":"#ccc"
 }
 
 //次按钮部分
@@ -71,26 +80,25 @@ let defaultColor = {
   "color-accent-light":"$palette-green-400",
 }
 
-let _versions = [
-  {value:"1.6.10-alpha.2"},
-  {value:"1.6.10-alpha.3"}
-]
-
 class Home extends Component {
 
   constructor(props) {
     super(props);
     let _cookie = this.getCookie(cookieId);
     if(_cookie){
-        document.getElementById(cookieId).href = (cdnUrl+_cookie+".css");
+        // document.getElementById(cookieId).href = (cdnUrl+_cookie+".css");
     }
     let _style = {
       all:defaultValueAll,
       button:{}
     }
     let _styleJs = this.getObjToStyle(_style);
-    this.version = _versions[0].value;
     this.state = {
+        expanded: true,
+        versions:[],
+        dowloand:"",
+        version:"",
+        prefixValue:"",
         data:{
             theme:{
               ...defaultColor,
@@ -109,6 +117,8 @@ class Home extends Component {
               "font-family-primary":defaultValueAll['font-family'],
               "font-size-base":defaultValueAll['font-size'],
               "text-color-base":defaultValueAll['color'],
+
+              "border-radius":defaultValueAll['border-radius'],
               "border-color":defaultValueAll['border-color'],
 
                // 次按钮文本色
@@ -119,11 +129,11 @@ class Home extends Component {
 
               // Table 细化样式变量：
               // 表头背景色
-              "table-header-background-color":defaultValueTable['background'],
+              "table-header-background-color":defaultValueAll['table-header-background-color'],
               // 表头文字颜色
-              "table-header-text-color": defaultValueTable['color'],
+              "table-header-text-color": defaultValueAll['table-header-text-color'],
               // 表格分割线颜色
-              "table-border-color-base": defaultValueTable['borderColor'],
+              "table-border-color-base": defaultValueAll['table-border-color-base'],
             }
         },
         // version:"",
@@ -131,8 +141,20 @@ class Home extends Component {
         style:_style,
         styleJs:_styleJs
     }
+    this.getAlltag();
   }
-  
+   
+  getAlltag = () => { 
+      get("/version").then((data) => {
+        this.setState({
+          versions:data,
+          version:data[0].value
+        })
+      }, (error) => {
+          console.log(error);
+      });
+  }
+
   getCookie(name){ 
       var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
       if(arr=document.cookie.match(reg))
@@ -157,10 +179,17 @@ class Home extends Component {
 
   save = (param) => {
     param.theme = this.getParamToHex(param.theme);
+    if(this.state.prefixValue !== ""){
+      param.prefixValue = this.state.prefixValue;
+    }
+    console.log("param ----- ",param);
     post("/package",param).then((data) => {
       if(data){
-        this.setState({showLine:false});
-        this.changeTheme(data.name); 
+        this.setState({
+          showLine:false,
+          dowloand:true
+        });
+        // this.changeTheme(data.name); 
       }
     }, (error) => {
         this.setState({showLine:false});
@@ -183,11 +212,11 @@ class Home extends Component {
   }
 
   
-  onBuildSelect = ({ key }) => {
-    this.version = key;
-    this.setState({showLine:true});
-      this.save({...this.state.data,version:key});
-  }
+  // onBuildSelect = ({ key }) => {
+  //   this.version = key;
+  //   this.setState({showLine:true});
+  //     this.save({...this.state.data,version:key});
+  // }
   // submit = (e) => {
   //     this.setState({showLine:true});
   //     if(this.getCookie(cookieId) !== "tinper-bee.css"){
@@ -293,7 +322,7 @@ class Home extends Component {
    */
   update = (e) => {
     this.setState({showLine:true});
-    post("/updateAll",{version:[this.version]}).then((data) => {
+    post("/updateAll",{version:[this.state.version]}).then((data) => {
       if(data){
         this.setState({showLine:false});
       }
@@ -314,52 +343,47 @@ class Home extends Component {
 
   /**
    * 动态生成页变量抽取的内容
+   * _level basics(基础样式) senior(高级设置)
    * @memberof Home
    */
-  getComponentListRender = ()=>{
-    let dataList = {
-      all:[
-        {type:"color",label:"主题色",key:"primary-color",style:"background"},
-        {type:"color",label:"点击色(active)",key:"primary-color-dark",style:"active"},
-        {type:"color",label:"点击色(hover)",key:"primary-color-light",style:"hover"},
-        {type:"hr"},
-        {type:"string",label:"字体(font family)",key:"font-family-primary",style:"font-family"},
-        {type:"number",label:"字号",key:"font-size-base",style:"font-size"},
-        {type:"color",label:"字体颜色",key:"text-color-base",style:"color"},
-        {type:"hr"},
-        {type:"color",label:"边框颜色",key:"border-color",style:"border-color"},
-        {type:"color",label:"条目hover背景色",key:"item-hover-bg-color-base",style:"item-bg"},
-        {type:"color",label:"条目selected背景色",key:"item-selected-bg-color-base",style:"item-hover"},
-      ],
-      type:"hr",
-      button:[
-        {type:"color",label:"背景色(次按钮)",key:"secondary-color",style:"background"},
-        {type:"color",label:"active(次按钮)",key:"secondary-color-dark",style:"active"},
-        {type:"color",label:"hover(次按钮)",key:"secondary-color-light",style:"hover"},
-        {type:"color",label:"文本色(次按钮)",key:"button-secondary-text-color",style:"color"}
-      ]
-    }
-    
-    let _ht = [];
+  getComponentListRender = (_level,dataList)=>{ 
+    // debugger;
+    let _ht = [], i=0;
     for (let key in dataList) {
+      i++;
       let item = dataList[key];
       if(Array.isArray(item)){
-        _ht.push(_ht.length != 0 ?<span key={key}>{key}</span>:null);
-        _ht = _ht.concat(this.getItemRender(item,key));
-      }else if(typeof(item) == 'string'){
-        _ht.push(this.getHrRender(key));
+        if(_level === "senior" && key !== "all"){
+          _ht.push(this.getHrRender(key));
+          _ht.push(_ht.length != 0 ?<div><span key={`${i}-${key}`}><br />{key} 配置</span></div>:"");
+          // _ht.push(<div><span key={`${i}-${key}`}><br />{key}</span></div>);
+        }
+        _ht = _ht.concat(this.getItemRender(item,key,_level));
+      }else if(typeof(item) == 'string'){ 
+        // _ht.push(this.getHrRender(key));
       }
     }
     return _ht;
   }
 
-  getItemRender = (item,component)=>{
-    let _ht = [];
+  getItemRender = (item,component,_level)=>{
+    let _ht = [],i=2;
     item.forEach((attr)=>{
-      _ht.push(this.getTypeInput(attr,component));
+      i++;
+      if(_level === attr.level){
+        _ht.push(<Col xs={12} sm={6} md={4} lg={4} key={i+"input_"+attr.key}>
+            <FormItem>
+              <Col xs={12} sm={12} md={12}  lg={12} className="col">
+                {this.getTypeInput(attr,component)}
+              </Col>
+            </FormItem>
+          </Col>);
+      }
     })
     return _ht;
   }
+
+  
 
   /**
    * 获取变量抽取的间隔线条
@@ -367,7 +391,7 @@ class Home extends Component {
    */
   getHrRender =(component)=>{
     return(<div className="online">
-      <hr />
+      {/* <hr /> */}
     </div>);
   }
 
@@ -379,8 +403,7 @@ class Home extends Component {
   getTypeInput = (attr,component)=>{
     let newAttr = {defaultValue:this.state.data.theme[attr.key],
       handleChange:(color)=>{this.handleChange(color,attr,component)},
-      ...attr}
-
+      ...attr};
     switch(attr.type){
       case "color":
         return <PhotoshopPickerComp name={attr.key} {...newAttr} />;
@@ -389,7 +412,8 @@ class Home extends Component {
       case "number":
         return <TextInput name={attr.key} {...newAttr} />;
       case "hr":
-        return this.getHrRender(null); 
+        // return attr.level === "senior"?this.getHrRender(null):""; 
+        return this.getHrRender(null)
     }
   }
 
@@ -423,91 +447,171 @@ class Home extends Component {
           }
       }))
   }
+  
+  onChange = () => {
+    this.setState({expanded: !this.state.expanded})
+  }
 
-  // versionHandleChange = value => {
-  //   this.version = value;
-  // };
+  versionHandleChange = value => {
+    this.setState({
+      version:value
+    })
+  };
 
+  btnSubmit = (e) => {
+    this.setState({showLine:true});
+    this.save({...this.state.data,version:this.state.version});
+  };
+
+  onPrefixChange = (prefixValue) => {
+    this.setState({
+      prefixValue
+    })
+  }
+  
   render() {
     let {clsPrefix} = this.props;
     let data = this.state.data.theme;
-    let state = this.state;
-    let _primary = state.styleJs.all;
-    let _button = state.styleJs.button;
+    let {versions,version,dowloand,styleJs}  = this.state;
+    // let state = this.state;
+    let dataHeadList = {
+      all:[
+        {type:"color",label:"主题色",key:"primary-color",style:"background",level:"basics"},
+        {type:"number",label:"边框圆角",key:"border-radius",style:"border-radius",level:"basics"}
+      ]
+    }
+    let dataList = {
+      all:[
+        {type:"color",label:"点击色(active)",key:"primary-color-dark",style:"active",level:"senior"},
+        {type:"color",label:"点击色(hover)",key:"primary-color-light",style:"hover",level:"senior"},
+        {type:"color",label:"字体颜色",key:"text-color-base",style:"color",level:"senior"},
+        {type:"color",label:"边框颜色",key:"border-color",style:"border-color",level:"senior"},
+        {type:"color",label:"条目hover背景色",key:"item-hover-bg-color-base",style:"item-bg",level:"senior"},
+        {type:"color",label:"条目selected背景色",key:"item-selected-bg-color-base",style:"item-hover",level:"senior"},
+      ],
+      type:"hr",
+      button:[
+        {type:"color",label:"背景色(次按钮)",key:"secondary-color",style:"background",level:"senior"},
+        {type:"color",label:"active(次按钮)",key:"secondary-color-dark",style:"active",level:"senior"},
+        {type:"color",label:"hover(次按钮)",key:"secondary-color-light",style:"hover",level:"senior"},
+        {type:"color",label:"文本色(次按钮)",key:"button-secondary-text-color",style:"color",level:"senior"},
+      ],
+      type:"hr",
+      table:[
+        {type:"color",label:"表头背景色",key:"table-header-background-color",style:"background",level:"senior"},
+        {type:"color",label:"表头hover背景色",key:"table-header-text-color",style:"background",level:"senior"},
+        {type:"color",label:"表格分割线颜色",key:"table-border-color-base",style:"background",level:"senior"},
+      ]
+    }
     return (
       <div className={`${clsPrefix}-home ${this.props.className}`}>
-         {/* <h2>官方主题</h2>
-        <div className="header">
-          <ul>
-            <li><a href="javascript:void(0)" onClick={this.themClick} id="ncc" >NCC 主题</a></li>
-            <li><a href="javascript:void(0)" onClick={this.themClick} id="yxy" >营销云 主题</a></li>
-            <li><a href="javascript:void(0)" onClick={this.themClick} id="hxlh" >华新丽华 主题</a></li>
-          </ul>
-        </div> */}
 
-       <div className="title"><span className="titile-well">#</span>自定义主题</div>
-
+       <div className="title">自定义主题</div>
+       
        <div className="primry">
-          {
-             this.getComponentListRender()
-          } 
+          <div className="search-panel-cont">
+            <div className="home-head">
+                <SearchPanel>
+                      <HeadContainer>
+                        <Form>
+                          <Row>
+                            { this.getComponentListRender("basics",dataHeadList) }
+                          </Row>
+                        </Form>
+                      </HeadContainer>
+                </SearchPanel>
+            </div>
+            
+            <SearchPanel title='高级配置'>
+                  <AdvancedContainer>
+                    <Form>
+                      <Row>
+                        { this.getComponentListRender("senior",dataList) }
+                      </Row>
+                    </Form> 
+                  </AdvancedContainer>
+            </SearchPanel>
+          </div>
+         
           <div className="online title">
-            预览
-            <hr />
+             组件效果预览
+            {/* <hr /> */}
           </div>
 
           <div className="exampleall" >
-             <Example styleJs={state.styleJs} theme={data} />
+             <ExampleTinper styleJs={styleJs} theme={data} />
+          </div>
+ 
+          <div className="online title">
+            应用场景效果预览
+            {/* <hr /> */}
           </div>
 
-          {/* <div>
-            请选择版本号:
-            <Select
-              defaultValue={_versions[0].value}
+          <div className="app-cont">
+
+              <div className="online title">
+                页面代码
+              </div>
+
+              <div className="exampleall-app" >
+                <div className="example-left">
+                  <ExampleMenus styleJs={styleJs} theme={data} />
+                </div>
+
+                <div className="example-right">
+                  <Example styleJs={styleJs} theme={data} />
+                </div>
+              </div>
+          </div>
+         
+
+
+          <div className='clear version input_cont'>
+            <label>请选择版本号<font color="red"> * </font>:</label>
+            <Select style={{width:200}}
+              defaultValue={version}
+              value={version}
               onChange={this.versionHandleChange}
               showSearch={true}
             >
             {
-              _versions.map(da=><Option value={da.value}>{da.value}</Option>)
+              versions.map((da,i)=><Option key={`${i}_v`} value={da.value}>{da.value}</Option>)
             }
             </Select> 
-          </div> */}
+          </div>
 
+          <div className='clear version'>
+            <label>css添加前缀名:</label>
+            <FormControl style={{width:200}} className="demo1-input"  value={this.state.prefixValue}  onChange={this.onPrefixChange} />
+          </div>
 
-          <div className='submit'>
-            <p>你的定制版Tinper UI即将大功告成. 只要点击下边的按钮就可以下载了.</p>
-            
-            <Dropdown
-                trigger={['click']}
-                overlay={
-                  <Menu
-                    onSelect={this.onBuildSelect}>
-                    {
-                      _versions.map(da=><Item key={da.value}>{da.value}</Item>)
-                    }
-                  </Menu>
-                }
-                animation="slide-up"
-                // onVisibleChange={onVisibleChange}
-                >
-                <Button colors="primary" className="login" > 立即下载 <Icon type="uf-treearrow-down" /> </Button>
-            </Dropdown>
-            
-            {/* <Button colors="primary" className="login" onClick={this.update}>更新代码  </Button> */}
-
-            <Button colors="primary" className="login" onClick={this.dowloand}>下载</Button>
-
-            {/* <Button colors="primary" className="login" onClick={this.submitNcc}>Ncc 主题build 保存</Button> */}
-            {/* <Button colors="secondary" shape="border" className="reset">取消</Button> */}
+          <div className='clear btn-cont'>
+            <div className="sub-cont">
+              <div className='clear annotation'>
+                <p>请确定您选择的版本号、参数的完整性,点击下面开始构建,将为您打包一个您的完整的tinper-bee.css .</p>
+              </div> 
+              
+              <div className='clear submit'>
+              {
+                version === ""?<Button bordered disabled > 开始构建 </Button>:<Button bordered 
+                onClick={this.btnSubmit} > 开始构建</Button>
+              }
+              </div>
+              
+              {/* {
+                dowloand === ""?<Button bordered className="login" disabled > 下载 </Button>:<Button bordered className="login" 
+                onClick={this.dowloand} > 下载 </Button>
+              } */}
+            </div>
           </div>
        </div>
 
        <Loading
-            showBackDrop={true}
-            loadingType="line"
-            show={this.state.showLine}
+          showBackDrop={true}
+          loadingType="line"
+          fullScreen={true}
+          show={this.state.showLine}
         />
-
       </div>
     )
   }
