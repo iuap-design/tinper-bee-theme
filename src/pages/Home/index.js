@@ -506,7 +506,7 @@ class Home extends Component {
     return (
       <div className={`${clsPrefix}-home ${this.props.className}`}>
 
-       <div className="title">自定义主题</div>
+       {/* <div className="title">自定义主题</div> */}
        
        <div className="primry">
           <div className="search-panel-cont">
@@ -522,7 +522,7 @@ class Home extends Component {
                 </SearchPanel>
             </div>
             
-            <SearchPanel title='高级配置'>
+            <SearchPanel title='cc'>
                   <AdvancedContainer>
                     <Form>
                       <Row>

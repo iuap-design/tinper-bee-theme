@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 commonConfig = {
   entry: {
@@ -8,12 +9,16 @@ commonConfig = {
       "babel-polyfill",
       path.join(__dirname, 'src/index.js')
     ],
+    home: [
+      "babel-polyfill",
+      path.join(__dirname, 'src/pages/Home/index.js')
+    ],
     vendor: ['react', 'react-router-dom', 'react-dom']
   },
   output: {
     path: path.join(__dirname, './dist'),
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js',
+    filename: '[name].js',
+    chunkFilename: '[name].js',
     publicPath: "/"
   },
   module: {
@@ -63,12 +68,20 @@ commonConfig = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: path.join(__dirname, 'src/index.html')
+      template: path.join(__dirname, 'src/index.html'),
+      // minify: { //打包后压缩
+      //   removeComments: true, // 打包后删除注释
+      //   collapseWhitespace: true // 打包后删除空格
+      // }, 
+      // chunks: ['app']
     }),
     // HashedModuleIdsPlugin 一直缓存在用户本地的
     new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static'
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'runtime'

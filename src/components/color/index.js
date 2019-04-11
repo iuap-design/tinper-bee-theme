@@ -30,27 +30,22 @@ class PhotoshopPickerComp extends React.Component {
     this.setState({ displayColorPicker: false })
   };
 
-  handleChange = (color) => {
-    debugger;
+  handleChange = (color) => { 
     this.setState({ 
-      color: color.rgb,
+      color: color.rgba,
       inputColor:color.hex
     });
-    debugger;
-    // this.props.handleChange({[this.props.name]:color.hex});
-    // let _color = color.rgb.r +","+color.rgb.g +","+color.rgb.b +","+color.rgb.a;
     this.props.handleChange(color.hex);
   };
 
   render() {
-    // console.log("---this.state.color--",this.state.color);
     const styles = reactCSS({
       'default': {
         color: {
           width: '14px',
           height: '14px',
           borderRadius: '2px',
-          background: `rgba(${ this.state.color.r }, ${ this.state.color.g }, ${ this.state.color.b }, ${ this.state.color.a })`,
+          background: this.state.color
         },
         swatch: {
           padding: '5px',
