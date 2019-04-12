@@ -65,6 +65,12 @@ class ExampleTinper extends Component {
     const PrimaryButton = styled(Button)`${_primary}
       background-color:${theme["border-color"]} !important;
       border-color:${theme["border-color"]} !important;
+      :hover{
+        background-color:${theme["primary-color-light"]} !important;
+      }
+      :active{
+        background-color:${theme["primary-color-dark"]} !important;
+      }
     `;
     const SecondaryButton = styled(Button)`${_button}`;
 
@@ -79,8 +85,10 @@ class ExampleTinper extends Component {
   // .u-radio.is-checked .u-radio-label:after{
   //   background:#fff;
   // }
-    const PrimaryRadio = styled(Radio)`{
-      .u-radio-label:after{
+
+
+    const PrimaryRadioGroup = styled(Radio.RadioGroup)`{
+      .is-checked .u-radio-label:after{
         background:${theme["primary-color"]}  !important;
       }
       .u-radio-label:before{
@@ -89,8 +97,11 @@ class ExampleTinper extends Component {
     }`;
     const PrimaryPopconfirm = styled(Popconfirm)``;
     // console.log(" primary-- ",theme["primary-color"]);
-    const PrimaryCheckbox = styled(Checkbox)`
-      .u-checkbox-label:after{
+    const PrimaryCheckboxGroup = styled(Checkbox.CheckboxGroup)`
+      .u-checkbox.is-checked .u-checkbox-label:after{
+        color:${theme["primary-color"]}  !important;
+      }
+      .u-checkbox.u-checkbox-indeterminate .u-checkbox-label:after{
         color:${theme["primary-color"]}  !important;
       }
     `;
@@ -159,27 +170,29 @@ class ExampleTinper extends Component {
           <div className="component first" >
             <PrimaryBadge colors="primary" >8</PrimaryBadge>
 
-            <PrimaryCheckbox
-                disabled
-                className="test" >
-            </PrimaryCheckbox>
-            <PrimaryCheckbox
-                onDoubleClick={ this.handleDblClick }
-                ref="test"
-                checked={true}>
-                全选
-            </PrimaryCheckbox>
-            <PrimaryCheckbox
-                ref="test"
-                indeterminate
-                >
-                半选
-            </PrimaryCheckbox>
+            <PrimaryCheckboxGroup>
+              <Checkbox
+                  disabled
+                  className="test" >
+              </Checkbox>
+              <Checkbox
+                  onDoubleClick={ this.handleDblClick }
+                  ref="test"
+                  checked={true}>
+                  全选
+              </Checkbox>
+              <Checkbox
+                  ref="test"
+                  indeterminate
+                  >
+                  半选
+              </Checkbox> 
+            </PrimaryCheckboxGroup>
 
-            <PrimaryRadio.RadioGroup name="lol" selectedValue={this.state.selectedValue} onChange={this.handleChange.bind(this)}>
-                <PrimaryRadio value="ig" >男</PrimaryRadio>
-                <PrimaryRadio value="edg" >女</PrimaryRadio> 
-            </PrimaryRadio.RadioGroup>
+            <PrimaryRadioGroup name="lol" selectedValue={this.state.selectedValue} onChange={this.handleChange.bind(this)}>
+                <Radio value="ig" >男</Radio>
+                <Radio value="edg" >女</Radio> 
+            </PrimaryRadioGroup>
 
             <PrimarySwitch
               checked={true}
@@ -209,21 +222,21 @@ class ExampleTinper extends Component {
                     style={{ width: 200, marginRight: 6 }}
                     size="sm"
                   >
-                <Option value="jack">boyuzhou111</Option>
-                <Option value="lucy">renhualiu</Option>
+                <Option value="jack">供应商</Option>
+                <Option value="lucy">采购商</Option>
                 <Option value="disabled" disabled>
-                  Disabled
+                  企业
                 </Option>
-                <Option value="yiminghe">yuzhao</Option>
+                <Option value="yiminghe">个人</Option>
               </PrimarySelect>
           </div>
 
           <div className="component" style={{marginTop:30}} >
             <PrimaryTimeline>
-                <PrimaryTimeline.Item>Create a services site 2015-09-01</PrimaryTimeline.Item>
-                <PrimaryTimeline.Item>Solve initial network problems 2015-09-01</PrimaryTimeline.Item>
-                <PrimaryTimeline.Item>Technical testing 2015-09-01</PrimaryTimeline.Item>
-                <PrimaryTimeline.Item>Network problems being solved 2015-09-01</PrimaryTimeline.Item>
+                <PrimaryTimeline.Item>创建服务的时间 2015-09-01</PrimaryTimeline.Item>
+                <PrimaryTimeline.Item>服务部署时间 2015-10-01</PrimaryTimeline.Item>
+                <PrimaryTimeline.Item>查看时间 2015-11-01</PrimaryTimeline.Item>
+                <PrimaryTimeline.Item>结束时间 2015-11-12</PrimaryTimeline.Item>
             </PrimaryTimeline>
             </div>
 

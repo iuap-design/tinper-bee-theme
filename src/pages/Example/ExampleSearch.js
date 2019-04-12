@@ -94,6 +94,32 @@ class ExampleSearch extends Component {
     const PrimaryFormControl = styled(FormControl)`
         border-radius:${theme["border-radius"]}px !important;
    `;
+
+   const PrimaryDatePicker = styled(DatePicker)`
+        .rc-calendar-selected-date .rc-calendar-date, .rc-calendar-selected-day .rc-calendar-date{
+            background-color:${theme["primary-color"]} !important;
+            border: 1px solid ${theme["border-color"]} !important; 
+        }
+        .rc-calendar-today .rc-calendar-date{
+            border: 1px solid ${theme["border-color"]} !important;
+        }
+        .rc-calendar-ok-btn, .rc-calendar-time-picker-btn, .rc-calendar-today-btn{
+            color:${theme["primary-color"]} !important;
+        }
+        .rc-calendar-year-panel-selected-cell .rc-calendar-year-panel-year:hover{
+            background-color:${theme["primary-color"]} !important;
+        }
+        .rc-calendar-month-panel-selected-cell .rc-calendar-month-panel-month,
+        .rc-calendar-year-panel-selected-cell .rc-calendar-year-panel-year{
+            background-color:${theme["primary-color"]} !important;
+        }
+        .rc-calendar-day-select:hover, .rc-calendar-month-select:hover, .rc-calendar-year-select:hover{
+            color:${theme["primary-color"]} !important;
+        }
+        .rc-calendar-next-month-btn:hover, .rc-calendar-next-year-btn:hover, .rc-calendar-prev-month-btn:hover, .rc-calendar-prev-year-btn:hover{
+            color:${theme["primary-color"]} !important;
+        }
+   `;
    
     const { getFieldProps, getFieldError } = this.props.form;
     let self = this;
@@ -123,7 +149,7 @@ class ExampleSearch extends Component {
                                 <Col xs={12} sm={6} md={4} lg={3}>
                                     <FormItem>
                                         <Col xs={12} sm={12} md={12}  lg={12} className="col">
-                                            <Label>名 称:</Label>
+                                            <Label>名 称</Label>
                                             <PrimaryFormControl size="sm"
                                                 {
                                                 ...getFieldProps('orderCode', {
@@ -138,13 +164,10 @@ class ExampleSearch extends Component {
                                 <Col xs={12} sm={6} md={4}  lg={3}>
                                     <FormItem>
                                         <Col xs={12} sm={12} md={12}  lg={12} className="col">
-                                            <Label>电话:</Label>
-                                            <PrimaryFormControl size="sm"
-                                                {
-                                                ...getFieldProps('supplierName', {
-                                                    initialValue: '',
-                                                })
-                                                }
+                                            <Label>时间</Label> 
+                                            <PrimaryDatePicker
+                                                format="YYYY-MM-DD dddd" 
+                                                defaultValue={moment()}
                                             />
                                         </Col>
                                     </FormItem>
@@ -162,7 +185,7 @@ class ExampleSearch extends Component {
                                 <Col xs={12} sm={6} md={4} lg={3}>
                                     <FormItem>
                                         <Col xs={12} sm={12} md={12}  lg={12} className="col">
-                                            <Label>联系人:</Label>
+                                            <Label>联系人</Label>
                                             <PrimaryFormControl size="sm"
                                                 {
                                                 ...getFieldProps('orderCode', {
@@ -177,7 +200,7 @@ class ExampleSearch extends Component {
                                 <Col xs={12} sm={6} md={4}  lg={3}>
                                     <FormItem>
                                         <Col xs={12} sm={12} md={12}  lg={12} className="col">
-                                            <Label>供应商:</Label>
+                                            <Label>供应商</Label>
                                             <PrimaryFormControl size="sm"
                                                 {
                                                 ...getFieldProps('supplierName', {
@@ -192,7 +215,7 @@ class ExampleSearch extends Component {
                                 <Col xs={12} sm={6} md={4}  lg={3}>
                                     <FormItem>
                                         <Col xs={12} sm={12} md={12}  lg={12} className="col">
-                                            <Label>地址:</Label>
+                                            <Label>地址</Label>
                                             <PrimaryFormControl size="sm"
                                                 {
                                                 ...getFieldProps('supplierName', {
@@ -208,7 +231,7 @@ class ExampleSearch extends Component {
                                 <Col xs={12} sm={6} md={4}  lg={3}>
                                     <FormItem>
                                         <Col xs={12} sm={12} md={12}  lg={12} className="col">
-                                            <Label>车牌:</Label>
+                                            <Label>车牌</Label>
                                             <PrimaryFormControl size="sm"
                                                 {
                                                 ...getFieldProps('supplierName', {
@@ -223,7 +246,7 @@ class ExampleSearch extends Component {
                                 <Col xs={12} sm={6} md={4}  lg={3}>
                                     <FormItem>
                                         <Col xs={12} sm={12} md={12}  lg={12} className="col">
-                                            <Label>备注:</Label>
+                                            <Label>备注</Label>
                                             <PrimaryFormControl size="sm"
                                                 {
                                                 ...getFieldProps('supplierName', {
@@ -238,7 +261,7 @@ class ExampleSearch extends Component {
                                 <Col xs={12} sm={6} md={4}  lg={3}>
                                     <FormItem>
                                         <Col xs={12} sm={12} md={12}  lg={12} className="col">
-                                            <Label>编号:</Label>
+                                            <Label>编号</Label>
                                             <PrimaryFormControl size="sm"
                                                 {
                                                 ...getFieldProps('supplierName', {

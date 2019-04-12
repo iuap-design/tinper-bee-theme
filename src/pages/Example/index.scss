@@ -10,6 +10,7 @@
     min-width: 80px;
     white-space: nowrap;
     text-align: right;
+    line-height: 29px;
   }
   .u-checkbox-group,
   .col{
@@ -38,7 +39,7 @@
   }
 
   .demo-head .u-row{
-  margin-left: -35px;
+  margin-left: -20px !important;
   margin-right: -35px;
   }
 
@@ -54,6 +55,15 @@
   //   overflow-y: scroll;
   //   overflow-x: hidden;
   // }
+
+
+  .datepicker-container{
+    min-width: 97px;
+    .u-form-control{
+      height: 26px;
+    }
+  }
+
 }
 
 

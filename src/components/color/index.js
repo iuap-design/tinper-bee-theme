@@ -22,6 +22,14 @@ class PhotoshopPickerComp extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps){
+    if(this.props.defaultValue != nextProps.defaultValue){
+      this.setState({
+        inputColor:nextProps.defaultValue
+      })
+    }
+  }
+
   handleClick = () => {
     this.setState({ displayColorPicker: !this.state.displayColorPicker })
   };
@@ -37,6 +45,11 @@ class PhotoshopPickerComp extends React.Component {
     });
     this.props.handleChange(color.hex);
   };
+
+
+  autoCalculate = (color) => {
+    this.props.autoCalculate?this.props.autoCalculate(color):null;
+  }; 
 
   render() {
     const styles = reactCSS({
@@ -78,7 +91,8 @@ class PhotoshopPickerComp extends React.Component {
         <Label>{label}</Label>
 
         <ColorPicker placeholder={placeholder} value={this.state.inputColor} 
-        onChange={ this.handleChange } 
+          autoCalculate={this.autoCalculate}
+          onChange={ this.handleChange } 
         // onChange={(value)=>{this.setState({inputColor:value})}} 
         /> 
 

@@ -80,9 +80,9 @@ commonConfig = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'
     }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static'
-    }),
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: 'static'
+    // }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'runtime'
     })

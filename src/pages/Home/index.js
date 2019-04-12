@@ -182,13 +182,14 @@ class Home extends Component {
     if(this.state.prefixValue !== ""){
       param.prefixValue = this.state.prefixValue;
     }
-    console.log("param ----- ",param);
+    // console.log("param ----- ",param);
     post("/package",param).then((data) => {
       if(data){
         this.setState({
           showLine:false,
           dowloand:true
         });
+        this.dowloand(null);
         // this.changeTheme(data.name); 
       }
     }, (error) => {
@@ -266,6 +267,21 @@ class Home extends Component {
       style:_style,
       styleJs:this.getObjToStyle(_style)
     });
+  }
+
+  autoCalculate = (color,attr,component) => { 
+    // console.log(" color---- ",color);
+    this.state.data.theme["primary-color-dark"] = "#"+rgbHex(color['darker']);
+    this.state.data.theme["primary-color-light"] = "#"+rgbHex(color['lighter']);
+    this.state.data.theme["border-color"] = color['clor'];
+    this.setState({
+      data:{
+        theme:{
+        ...this.state.data.theme
+        }
+      }
+    })
+
   }
 
   /**
@@ -400,9 +416,14 @@ class Home extends Component {
    * 拾色器、数字、字符串
    * @memberof Home
    */
-  getTypeInput = (attr,component)=>{
+  getTypeInput = (attr,component)=>{ 
+    let autoCalculate = null; 
+    if(attr['key'] === "primary-color"){
+      autoCalculate = (color)=>{this.autoCalculate(color,attr,component)}
+    }
     let newAttr = {defaultValue:this.state.data.theme[attr.key],
       handleChange:(color)=>{this.handleChange(color,attr,component)},
+      autoCalculate,
       ...attr};
     switch(attr.type){
       case "color":
@@ -482,8 +503,8 @@ class Home extends Component {
     }
     let dataList = {
       all:[
-        {type:"color",label:"点击色(active)",key:"primary-color-dark",style:"active",level:"senior"},
-        {type:"color",label:"点击色(hover)",key:"primary-color-light",style:"hover",level:"senior"},
+        {type:"color",label:"(active)色",key:"primary-color-dark",style:"active",level:"senior"},
+        {type:"color",label:"(hover)色",key:"primary-color-light",style:"hover",level:"senior"},
         {type:"color",label:"字体颜色",key:"text-color-base",style:"color",level:"senior"},
         {type:"color",label:"边框颜色",key:"border-color",style:"border-color",level:"senior"},
         {type:"color",label:"条目hover背景色",key:"item-hover-bg-color-base",style:"item-bg",level:"senior"},
@@ -522,7 +543,7 @@ class Home extends Component {
                 </SearchPanel>
             </div>
             
-            <SearchPanel title='cc'>
+            <SearchPanel title=''>
                   <AdvancedContainer>
                     <Form>
                       <Row>
@@ -549,9 +570,9 @@ class Home extends Component {
 
           <div className="app-cont">
 
-              <div className="online title">
+              {/* <div className="online title">
                 页面代码
-              </div>
+              </div> */}
 
               <div className="exampleall-app" >
                 <div className="example-left">
@@ -564,32 +585,35 @@ class Home extends Component {
               </div>
           </div>
          
-
-
-          <div className='clear version input_cont'>
-            <label>请选择版本号<font color="red"> * </font>:</label>
-            <Select style={{width:200}}
-              defaultValue={version}
-              value={version}
-              onChange={this.versionHandleChange}
-              showSearch={true}
-            >
-            {
-              versions.map((da,i)=><Option key={`${i}_v`} value={da.value}>{da.value}</Option>)
-            }
-            </Select> 
-          </div>
-
-          <div className='clear version'>
-            <label>css添加前缀名:</label>
-            <FormControl style={{width:200}} className="demo1-input"  value={this.state.prefixValue}  onChange={this.onPrefixChange} />
-          </div>
+          <div className='clear annotation'>
+            <p>请确定您选择的版本号、参数的完整性,点击下面开始构建,将为您打包一个您的完整的tinper-bee.css .</p>
+          </div>  
 
           <div className='clear btn-cont'>
-            <div className="sub-cont">
-              <div className='clear annotation'>
+            <div className="sub-cont" id="_sub-cont" >
+              {/* <div className='clear annotation'>
                 <p>请确定您选择的版本号、参数的完整性,点击下面开始构建,将为您打包一个您的完整的tinper-bee.css .</p>
-              </div> 
+              </div>  */}
+
+                <label>请选择版本号<font color="red"> * </font>:</label>
+                <Select style={{width:200}}
+                  defaultValue={version}
+                  value={version}
+                  getPopupContainer={()=>document.getElementById("_sub-cont")}
+                  onChange={this.versionHandleChange}
+                  showSearch={true}
+                >
+                {
+                  versions.map((da,i)=><Option key={`${i}_v`} value={da.value}>{da.value}</Option>)
+                }
+                </Select> 
+
+
+              {/* <div className='clear version'> */}
+                <label>css添加前缀名:</label>
+                <FormControl style={{width:200}} className="demo1-input"  value={this.state.prefixValue}  onChange={this.onPrefixChange} />
+              {/* </div> */}
+
               
               <div className='clear submit'>
               {
