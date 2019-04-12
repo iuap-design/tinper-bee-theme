@@ -163,19 +163,24 @@
     color: yellow;
   }
 
-
-  .home-head{
-    .u-search-header{
-      display: none; 
-    }
+  .u-select-dropdown-menu-item{
+    line-height: 26px;
   }
-
+ 
   .search-panel-cont{
     background: rgba(250,250,250,1);
     .u-search{
       background: transparent !important;
       padding-top: 20px;
     }
+
+    .u-search-header-oper{
+      span:nth-child(3),
+      span:nth-child(2){
+        // display: none;
+      }
+    } 
+
   }
 
   .clear{
@@ -205,6 +210,10 @@
   .home-head{
     .u-search-resident{
       padding-left: 4px;
+    }
+
+    .u-search-header{
+      display: none; 
     }
   }
 }

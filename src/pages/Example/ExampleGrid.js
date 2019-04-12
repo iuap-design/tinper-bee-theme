@@ -164,12 +164,14 @@ class ExampleGrid extends Component {
       .u-checkbox.is-checked .u-checkbox-label:after{
         color:${theme["primary-color"]} !important;
       }
-       
-      .u-table-thead th{
-        // background:${theme["table-header-background-color"]} !important; 
+      .u-table-row-hover{
+        background:${theme["table-row-hover-bg-color"]} !important; 
       }
-      .u-table-thead .th-drag:hover{
-        background:${theme["table-header-text-color"]} !important; 
+      .u-table-thead th{
+        background:${theme["table-header-background-color"]} !important; 
+      }
+      .u-table-thead .th-drag{
+        color:${theme["table-header-text-color"]} !important; 
       }
       .u-table td{
         border-bottom:1px solid ${theme["table-border-color-base"]} !important;

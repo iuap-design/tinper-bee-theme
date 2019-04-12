@@ -49,8 +49,9 @@ let defaultValueAll = {
   "item-bg":"#E7F4FD",
   "item-hover":"#EBECF0",// 最新
   "table-header-background-color":"#E0E0E0",
-  "table-header-text-color":"#ebecf0",
-  "table-border-color-base":"#ccc"
+  "table-header-text-color":"#000",
+  "table-border-color-base":"#ccc",
+  "table-row-hover-bg-color":"#ebecf0"
 }
 
 //次按钮部分
@@ -134,6 +135,8 @@ class Home extends Component {
               "table-header-text-color": defaultValueAll['table-header-text-color'],
               // 表格分割线颜色
               "table-border-color-base": defaultValueAll['table-border-color-base'],
+
+              "table-row-hover-bg-color": defaultValueAll['table-row-hover-bg-color'],
             }
         },
         // version:"",
@@ -520,8 +523,9 @@ class Home extends Component {
       type:"hr",
       table:[
         {type:"color",label:"表头背景色",key:"table-header-background-color",style:"background",level:"senior"},
-        {type:"color",label:"表头hover背景色",key:"table-header-text-color",style:"background",level:"senior"},
+        {type:"color",label:"表头文字色",key:"table-header-text-color",style:"background",level:"senior"},
         {type:"color",label:"表格分割线颜色",key:"table-border-color-base",style:"background",level:"senior"},
+        {type:"color",label:"表格行hover背景色",key:"table-row-hover-bg-color",style:"background",level:"senior"},
       ]
     }
     return (
@@ -532,7 +536,7 @@ class Home extends Component {
        <div className="primry">
           <div className="search-panel-cont">
             <div className="home-head">
-                <SearchPanel>
+                <SearchPanel >
                       <HeadContainer>
                         <Form>
                           <Row>
@@ -543,8 +547,8 @@ class Home extends Component {
                 </SearchPanel>
             </div>
             
-            <SearchPanel title=''>
-                  <AdvancedContainer>
+            <SearchPanel title='' showOperation={false}>
+                  <AdvancedContainer showOperation={false}>
                     <Form>
                       <Row>
                         { this.getComponentListRender("senior",dataList) }
@@ -590,13 +594,13 @@ class Home extends Component {
           </div>  
 
           <div className='clear btn-cont'>
-            <div className="sub-cont" id="_sub-cont" >
+            <div className="sub-cont"  id="_sub-cont">
               {/* <div className='clear annotation'>
                 <p>请确定您选择的版本号、参数的完整性,点击下面开始构建,将为您打包一个您的完整的tinper-bee.css .</p>
               </div>  */}
 
                 <label>请选择版本号<font color="red"> * </font>:</label>
-                <Select style={{width:200}}
+                <Select style={{width:200,lineHeight:33}}
                   defaultValue={version}
                   value={version}
                   getPopupContainer={()=>document.getElementById("_sub-cont")}

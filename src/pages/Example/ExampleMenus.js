@@ -67,8 +67,8 @@ render() {
         defaultOpenKeys={['demo3sub1']}
         //  openKeys={['demo3sub1','demo3sub2']}
         selectedKeys={[this.state.current,'4']} mode="inline" onSelect={this.onSelect.bind(this)}>
-            <SubMenu key="demo3sub1" title={<span><span>组织结构</span></span>}>
-                <MenuItemGroup title="用友">
+            <SubMenu key="demo3sub1" title={<span><span>用友集团</span></span>}>
+                <MenuItemGroup title="用友总部">
                     <Menu.Item key="1">用友网络</Menu.Item>
                     <Menu.Item key="2">用友金融</Menu.Item>   
                 </MenuItemGroup>
@@ -77,7 +77,7 @@ render() {
                     <Menu.Item key="4">用友tinper</Menu.Item>
                 </MenuItemGroup>
             </SubMenu>
-            <SubMenu key="demo3sub2" title={<span><span>三一集团</span></span>}>
+            <SubMenu key="demo3sub2" title={<span><span>用友集团分公司</span></span>}>
                 <Menu.Item key="5">湖南总公司</Menu.Item>
                 <Menu.Item key="6">石家庄分公司</Menu.Item>
                 <SubMenu key="demo3sub3" title="石家庄-前端团队">
@@ -85,10 +85,10 @@ render() {
                     <Menu.Item key="8">海外事业部</Menu.Item>
                 </SubMenu>
             </SubMenu>
-            <SubMenu key="demo3sub4" title={<span><span>个人团队</span></span>}>
-                <Menu.Item key="9">ynpm团队</Menu.Item>
-                <Menu.Item key="10">组织中心团队</Menu.Item>
-                <Menu.Item key="11">tinper组件库团队</Menu.Item>
+            <SubMenu key="demo3sub4" title={<span><span>用友开源团队</span></span>}>
+                <Menu.Item key="9">tnper-bee团队</Menu.Item>
+                <Menu.Item key="10">ynpm团队</Menu.Item>
+                <Menu.Item key="11">其他工具类团队</Menu.Item>
                 <Menu.Item key="12">mock团队</Menu.Item>
             </SubMenu>
         </PrimaryMenu></div>
