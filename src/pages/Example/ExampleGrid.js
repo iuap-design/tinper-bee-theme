@@ -183,7 +183,7 @@ class ExampleGrid extends Component {
 
     const PrimaryButton = styled(Button)`
       background:${theme["primary-color"]} !important;
-      border: 1px solid ${theme["border-color"]} !important;
+      border: 1px solid ${theme["primary-color"]} !important;
     `;
 
     const column = [

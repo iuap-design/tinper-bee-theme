@@ -63,8 +63,8 @@ class ExampleTinper extends Component {
     let {styleJs:{all:_primary,button:_button},clsPrefix,theme} = this.props;
     // const PrimaryButton = styled(Button)`${_primary}`;
     const PrimaryButton = styled(Button)`${_primary}
-      background-color:${theme["border-color"]} !important;
-      border-color:${theme["border-color"]} !important;
+      background-color:${theme["primary-color"]} !important;
+      border-color:${theme["primary-color"]} !important;
       :hover{
         background-color:${theme["primary-color-light"]} !important;
       }

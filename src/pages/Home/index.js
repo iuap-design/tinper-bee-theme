@@ -38,35 +38,35 @@ const defaultProps = {
 
 //全局主色
 let defaultValueAll = {
-  background: "#1E88E5",
-  active:"#1565C0",
-  hover:"#42A5F5",
+  background: "#F53C32",
+  active:"#E60012",
+  hover:"#E60012",
   "font-family":"Open Sans2",
-  "font-size":"14",
-  color:"#424242",
-  "border-color":"#1E88E5",
+  "font-size":"12",
+  color:"#212121",
+  "border-color":"#a5adba",
   "border-radius":"3",
   "item-bg":"#E7F4FD",
   "item-hover":"#EBECF0",// 最新
-  "table-header-background-color":"#E0E0E0",
-  "table-header-text-color":"#000",
-  "table-border-color-base":"#ccc",
+  "table-header-background-color":"#F1F2F5",
+  "table-header-text-color":"#212121",
+  "table-border-color-base":"#C1C7D0",
   "table-row-hover-bg-color":"#ebecf0"
 }
 
 //次按钮部分
 let defaultValueButton = {
-  background: "#E0E0E0",
-  active:"#BDBDBD",
-  hover:"#EEEEEE", 
-  color:"#424242",
+  background: "#ECEFF1",
+  active:"#DFE1E6",
+  hover:"#DFE1E6", 
+  color:"#212121",
 }
 
 //table 部分颜色
 let defaultValueTable = {
-  background: "#E0E0E0",
-  color:"#424242",
-  borderColor:"#ccc"
+  background: "#F1F2F5",
+  color:"#212121",
+  borderColor:"#C1C7D0"
 }
 
 
@@ -188,11 +188,11 @@ class Home extends Component {
     // console.log("param ----- ",param);
     post("/package",param).then((data) => {
       if(data){
+        this.dowloand(data.url);
         this.setState({
           showLine:false,
           dowloand:true
         });
-        this.dowloand(null);
         // this.changeTheme(data.name); 
       }
     }, (error) => {
@@ -441,10 +441,10 @@ class Home extends Component {
     }
   }
 
-  dowloand = (e)=>{
-    let _cookie = this.getCookie(cookieId);
-    let _url = cdnUrl+(_cookie?_cookie:"tinper-bee-theme")+".css";
-    this.downloadData(_url,"tinper-bee-theme.css");
+  dowloand = (url)=>{
+    // let _cookie = this.getCookie(cookieId);
+    // let _url = cdnUrl+(_cookie?_cookie:"tinper-bee-theme")+".css";
+    this.downloadData(url,"tinper-bee-theme.css");
   }
 
   downloadData=(excelUrl,reportName)=>{
