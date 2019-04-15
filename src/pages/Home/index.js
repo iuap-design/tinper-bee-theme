@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import cookie from 'react-cookies';
 import { post,get,getUrl } from 'public/utils';
 import { Label, FormControl ,Icon,Form,Select,Button,Dropdown,Menu,
-  Row, Col,
+  Row, Col,Tooltip
 } from 'tinper-bee';
 import Loading from 'bee-loading';
 import PhotoshopPickerComp from '../../components/color';
@@ -615,7 +615,9 @@ class Home extends Component {
 
               {/* <div className='clear version'> */}
                 <label>css添加前缀名:</label>
-                <FormControl style={{width:200}} className="demo1-input"  value={this.state.prefixValue}  onChange={this.onPrefixChange} />
+                <Tooltip inverse overlay={<div>添加自定义前缀，可以根据自己的项目前缀提供组件的覆盖样式，提升优先级(非必填).</div>}>
+                  <FormControl style={{width:200}} className="demo1-input"  value={this.state.prefixValue}  onChange={this.onPrefixChange} />
+                </Tooltip>
               {/* </div> */}
 
               
