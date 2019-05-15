@@ -72,9 +72,9 @@ let defaultValueTable = {
 
 let defaultColor = {
   // 默认色
-  "default-color":defaultValueAll['background'],
-  "default-color-dark":defaultValueAll['active'],
-  "default-color-light":defaultValueAll['hover'],
+  "default-color":defaultValueButton['background'],
+  "default-color-dark":defaultValueButton['active'],
+  "default-color-light":defaultValueButton['hover'],
   // 辅色
   "color-accent":"$palette-green-600",
   "color-accent-dark":"$palette-green-800",
