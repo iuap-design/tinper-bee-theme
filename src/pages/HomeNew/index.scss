@@ -1,0 +1,14 @@
+.tinper-bee-theme-main{
+    .theme-tab {
+        border-bottom: 2px solid #EBECF0;
+      }
+    .theme-tab-item {
+        display: inline-block;
+        padding: 10px 34px;
+        margin-bottom: -2px;
+        cursor: pointer;
+        &.theme-tab-item-actived {
+            border-bottom: 2px solid #F53C32;
+        }
+    }
+}

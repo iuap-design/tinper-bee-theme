@@ -1,0 +1,31 @@
+
+.col-item{
+    margin: 0;
+    padding: 0;
+    background: #F3F2F1;
+    margin-bottom: 16px;
+    .card-item {
+        padding:15px;
+        height: 100%;
+        box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.11), 0px 2px 4px 0px rgba(0, 0, 0, 0.13);
+        border-radius: 3px;
+        margin-right: 10px;
+        background: #fff;
+        overflow: auto;
+        .u-label.card-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(33,33,33,1);
+            line-height: 18px;
+            padding-bottom: 16px;
+            display: inline-block;
+          }
+    }
+}
+.three-in-one{
+    padding: 0;
+}
+//覆盖样式
+.u-calendar-full-header .u-calendar-full-header-month-select, .u-calendar-full-header .u-calendar-full-header-year-select{
+    width:60px;
+}

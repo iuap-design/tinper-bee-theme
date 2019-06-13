@@ -4,7 +4,7 @@ import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom';
 // 按需加载
 import Bundle from './Bundle';
 
-import Home from 'bundle-loader?lazy&name=home!pages/Home';
+import Home from 'bundle-loader?lazy&name=home!pages/HomeNew';
 // import Template from 'bundle-loader?lazy&name=template!pages/Template';
 
 const Loading = function () {
