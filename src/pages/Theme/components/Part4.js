@@ -113,7 +113,7 @@ export class PartFour extends Component {
   render() {
     return (
       <Row>
-        <ColItem md="3" title={'菜单 Menus'} height={350}>
+        <ColItem md={3} title={'菜单 Menus'} height={350}>
           <Menu
             mode="inline"
             openKeys={this.state.openKeys}
@@ -144,12 +144,12 @@ export class PartFour extends Component {
           </Menu>
         </ColItem>
         <Col className="three-in-one" md={3} xs={12} sm={12} >
-          <ColItem md="12" title={'多选 Checkbox'}>
+          <ColItem md={12} title={'多选 Checkbox'}>
             <Checkbox colors="primary">组织</Checkbox>
             <Checkbox colors="primary">部门</Checkbox>
             <Checkbox colors="primary">人员</Checkbox>
           </ColItem>
-          <ColItem md="12" title={'单选 Radio'}>
+          <ColItem md={12} title={'单选 Radio'}>
             <Radio.RadioGroup
               name="color"
               selectedValue={this.state.selectedValue}
@@ -160,7 +160,7 @@ export class PartFour extends Component {
 
             </Radio.RadioGroup>
           </ColItem>
-          <ColItem md="12" title={'日期 DatePicker'}>
+          <ColItem md={12} title={'日期 DatePicker'}>
             <DatePicker
               format={format}
               onSelect={this.onSelect}
@@ -170,7 +170,7 @@ export class PartFour extends Component {
           </ColItem>
         </Col>
         <Col className="three-in-one" md={6} xs={12} sm={12} >
-          <ColItem md="12" title={'多选 Checkbox'}>
+          <ColItem md={12} title={'多选 Checkbox'}>
             <Tabs
               defaultActiveKey="1"
               onChange={this.onTabChange}
@@ -181,21 +181,21 @@ export class PartFour extends Component {
               <TabPane tab='Tab 3' key="3">Content of Tab Pane 3</TabPane>
             </Tabs>
           </ColItem>
-          <ColItem md="6" title={'单选 Radio'}>
+          <ColItem md={6} title={'单选 Radio'}>
             <InputGroup >
               <InputGroup.Addon >https://</InputGroup.Addon>
               <FormControl type="text" />
               <InputGroup.Addon>.com</InputGroup.Addon>
             </InputGroup>
           </ColItem>
-          <ColItem md="6" title={'输入框 FormControl'}>
+          <ColItem md={6} title={'输入框 FormControl'}>
             <FormControl
               className="demo1-input"
               value={this.state.value}
               onChange={this.onChange}
             />
           </ColItem>
-          <ColItem md="6" title={'数字框 InputNumber'}>
+          <ColItem md={6} title={'数字框 InputNumber'}>
             <InputNumber precision={2} min={0} value={this.state.value} onChange={this.handleNumChange} />
             <InputNumber
               iconStyle="one"
@@ -206,7 +206,7 @@ export class PartFour extends Component {
               onChange={this.handleNumChange}
             />
           </ColItem>
-          <ColItem md="6" title={'下拉菜单 Select'}>
+          <ColItem md={6} title={'下拉菜单 Select'}>
             <Select
               defaultValue="all"
               onChange={this.handleChange}

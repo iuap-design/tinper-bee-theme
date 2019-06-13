@@ -48,10 +48,10 @@ export class PartTwo extends Component{
     return (
       <Row>
         <Col className="three-in-one" md={3} xs={12} sm={12} >
-          <ColItem md="12" title={'标记 Bage'}>
+          <ColItem md={12} title={'标记 Bage'}>
             <Badge colors="primary" >8</Badge>
           </ColItem>
-          <ColItem md="12" title={'状态按钮 LoadingState'}>
+          <ColItem md={12} title={'状态按钮 LoadingState'}>
             <LoadingState
               showBackDrop={false}
               onClick={this.handleClick}
@@ -60,7 +60,7 @@ export class PartTwo extends Component{
                   confirm
             </LoadingState>
           </ColItem>
-          <ColItem md="12" title={'面包屑 Breadcrumb'}>
+          <ColItem md={12} title={'面包屑 Breadcrumb'}>
             <PrimaryBreadcrumb>
               <PrimaryBreadcrumb.Item href="#">
                 Home
@@ -74,7 +74,7 @@ export class PartTwo extends Component{
             </PrimaryBreadcrumb>
           </ColItem>
         </Col>
-        <ColItem md="3" title={'时间轴 Timeline'} height={350}>
+        <ColItem md={3} title={'时间轴 Timeline'} height={350}>
           <Timeline>
             <Timeline.Item>Create a services site 2015-09-01</Timeline.Item>
             <Timeline.Item>Solve initial network problems 2015-09-01</Timeline.Item>
@@ -82,14 +82,14 @@ export class PartTwo extends Component{
             <Timeline.Item>Network problems being solved 2015-09-01</Timeline.Item>
           </Timeline>
         </ColItem>
-        <ColItem md="3" title={'日历 Calendar'} height={350}>
+        <ColItem md={3} title={'日历 Calendar'} height={350}>
           <Calendar
             fullscreen={true}
             onSelect={this.onSelect}
           >
           </Calendar>
         </ColItem>
-        <ColItem md="3" title={'树形控件 Tree'} height={350}>
+        <ColItem md={3} title={'树形控件 Tree'} height={350}>
           <Tree className="myCls" showLine checkable
             defaultExpandedKeys={this.state.defaultExpandedKeys}
             defaultSelectedKeys={this.state.defaultSelectedKeys}

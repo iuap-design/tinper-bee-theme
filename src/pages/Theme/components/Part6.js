@@ -67,7 +67,7 @@ export const PartSix = (props) => {
 
   return (
     <Row>
-      <ColItem md="12" title={'按钮 Button'} height={274}>
+      <ColItem md={12} title={'按钮 Button'} height={274}>
         <Table columns={columns} data={data} size="sm" />
       </ColItem>
     </Row>

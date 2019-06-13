@@ -31,7 +31,7 @@ export const PartThree = (props) => {
     );
     return (
         <Row>
-            <ColItem md="9" title={'分页 Pagination'}>
+            <ColItem md={9} title={'分页 Pagination'}>
                 <Pagination
                     first
                     last
@@ -48,7 +48,7 @@ export const PartThree = (props) => {
                 />
 
             </ColItem>
-            <ColItem md="3" title={'下拉按钮 Dropdown'}>
+            <ColItem md={3} title={'下拉按钮 Dropdown'}>
                 <Dropdown
                     trigger={['click']}
                     overlay={menu1}

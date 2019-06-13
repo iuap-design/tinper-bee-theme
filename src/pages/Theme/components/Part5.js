@@ -92,24 +92,24 @@ export class PartFive extends Component {
     ];
     return (
       <Row>
-        <ColItem md="3" title={'时间 TimePicker'} >
+        <ColItem md={3} title={'时间 TimePicker'} >
           1
            {/* <Timepicker getPopupContainer={this.getPopupContainer} placeholder="选择时间" onChange={this.onChange.bind(this)} /> */}
         </ColItem>
-        <ColItem md="3" title={'级联菜单 Cascader'} >
+        <ColItem md={3} title={'级联菜单 Cascader'} >
           <Cascader
             options={options}
             onChange={this.onChange}
             placeholder="请选择"
           />
         </ColItem>
-        <ColItem md="3" title={'开关 Switch'} >
+        <ColItem md={3} title={'开关 Switch'} >
           <Switch
             checked={this.state.checked}
             onChange={this.onSwitchChange}
           />
         </ColItem>
-        <ColItem md="3" title={'评分 Rate'} >
+        <ColItem md={3} title={'评分 Rate'} >
           <Rate value={this.state.value} onChange={this.handRateChange} />
         </ColItem>
       </Row>
