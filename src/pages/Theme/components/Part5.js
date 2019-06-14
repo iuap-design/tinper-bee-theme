@@ -7,7 +7,8 @@ import {
   Rate,
   // Timepicker,
 } from 'tinper-bee';
-// import Timepicker from "tinper-bee/lib/Timepicker";
+import TimePicker from 'bee-timepicker';
+// import 'bee-timepicker/build/TimePicker.css';
 export class PartFive extends Component {
   constructor(props) {
 
@@ -93,8 +94,7 @@ export class PartFive extends Component {
     return (
       <Row>
         <ColItem md={3} title={'时间 TimePicker'} >
-          1
-           {/* <Timepicker getPopupContainer={this.getPopupContainer} placeholder="选择时间" onChange={this.onChange.bind(this)} /> */}
+           <TimePicker  placeholder="选择时间" onChange={()=>{}} />
         </ColItem>
         <ColItem md={3} title={'级联菜单 Cascader'} >
           <Cascader

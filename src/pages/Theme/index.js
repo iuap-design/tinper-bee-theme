@@ -27,8 +27,15 @@ class Theme extends Component {
   }
   changeThemeJS = (_fileName) => {
     currentThemeFileName = _fileName;
-    currentThemeFileUrl = cdnUrl+_fileName;
-    document.getElementById(cookieId).href = (currentThemeFileUrl);
+    currentThemeFileUrl = cdnUrl+currentThemeFileName;
+    if(_fileName==='tinper-bee.css'){
+      currentThemeFileUrl = '//iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/latest/assets/'+currentThemeFileName
+    }
+    if(document.getElementById(cookieId)){
+      document.getElementById(cookieId).href = (currentThemeFileUrl);
+    }else{
+      document.getElementById('tinper-bee-csslink').href = (currentThemeFileUrl);
+    }
     // window.localStorage.setItem("tinper-bee-theme") = _fileName;
     document.cookie= cookieId + "="+_fileName;
     //window.parent.postMessage(_fileName,serverUrl);

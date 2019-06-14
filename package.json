@@ -51,6 +51,7 @@
     "bee-datepicker": "^2.0.14",
     "bee-loading": "^1.0.9",
     "bee-search-panel": "^2.0.13",
+    "bee-timepicker": "^2.0.4",
     "classnames": "^2.2.5",
     "fetch-plugin": "^1.2.5",
     "hex-rgb": "^3.0.0",

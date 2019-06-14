@@ -196,15 +196,20 @@ export class PartFour extends Component {
             />
           </ColItem>
           <ColItem md={6} title={'数字框 InputNumber'}>
-            <InputNumber precision={2} min={0} value={this.state.value} onChange={this.handleNumChange} />
-            <InputNumber
-              iconStyle="one"
-              max={12}
-              min={5}
-              step={2}
-              value={this.state.value}
-              onChange={this.handleNumChange}
-            />
+            <div style={{width:'50%',display:'inline-block',marginRight:6}}>
+              <InputNumber precision={2} min={0} value={this.state.value} onChange={this.handleNumChange} />
+            </div>
+            <div style={{width:'40%',display:'inline-block'}}>
+              <InputNumber
+                iconStyle="one"
+                max={12}
+                min={5}
+                step={2}
+                value={this.state.value}
+                onChange={this.handleNumChange}
+              />
+            </div>
+            
           </ColItem>
           <ColItem md={6} title={'下拉菜单 Select'}>
             <Select

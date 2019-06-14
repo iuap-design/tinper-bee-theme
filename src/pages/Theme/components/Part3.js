@@ -42,7 +42,7 @@ export const PartThree = (props) => {
                     activePage={1}
                     onSelect={()=>{}}
                     onDataNumSelect={()=>{}}
-                    showJump={true}
+                    // showJump={true}
                     total={100}
                     dataNum={2}
                 />

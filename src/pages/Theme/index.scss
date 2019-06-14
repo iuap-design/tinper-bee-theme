@@ -57,3 +57,11 @@
       }
     }
 }
+
+//覆盖样式
+.u-calendar-full-header .u-calendar-full-header-month-select, .u-calendar-full-header .u-calendar-full-header-year-select{
+  width:60px;
+}
+.u-calendar-calendar-body {
+  overflow: auto;
+}
