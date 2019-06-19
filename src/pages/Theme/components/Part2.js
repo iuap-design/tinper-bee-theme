@@ -52,20 +52,22 @@ export class PartTwo extends Component{
           background-color:${theme["primary-color"]} !important;
         }
       }`;
-      const PrimaryLoadingstate = styled(LoadingState)`${_primary}
-      .u-button.u-button-primary{
-        backgroud:${theme["primary-color"]} !important
-      }
-      .u-loading.u-loading-rotate>div{
-        border-color:${theme["primary-color"]} !important;
-      }
+      const PrimaryLoadingstate = styled(LoadingState)`
+        &.u-button.u-button-primary{
+          background-color:${theme["primary-color"]} !important
+          border-color:${theme["primary-color"]} !important
+        }
     `;
      PrimaryBreadcrumb = styled(Breadcrumb)`
-      li{
+      padding:0;
+      &.u-breadcrumb li{
         color:${theme["primary-color"]} !important;
       }
-      a{
+      &.u-breadcrumb a{
         color:${theme["primary-color"]} !important;
+      }
+      &.u-breadcrumb .active{
+        color:#777!important
       }
       `;
      const PrimaryTimeline = styled(Timeline)`{
@@ -99,7 +101,7 @@ export class PartTwo extends Component{
           background-color:${theme["item-hover-bg-color-base"]} !important;
         }
       .u-tree-checkbox-checked .u-tree-checkbox-inner:after, .u-tree .u-tree-checkbox-inner:after{
-          border: 2px solid ${theme["primary-color"]} !important;
+          border-color:${theme["primary-color"]} !important;
       }
     }`
      return(

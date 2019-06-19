@@ -286,7 +286,7 @@ export class PartFour extends Component {
               <PrimaryTabs.TabPane tab='Tab 3' key="3">Content of Tab Pane 3</PrimaryTabs.TabPane>
             </PrimaryTabs>
           </ColItem>
-          <ColItem md={6} title={'单选 Radio'}>
+          <ColItem md={6} title={'输入框组 InputGroup'}>
             <InputGroup >
               <InputGroup.Addon >https://</InputGroup.Addon>
               <PrimaryFormControl type="text" />
