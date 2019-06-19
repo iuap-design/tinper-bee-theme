@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import { Icon } from 'tinper-bee';
 import { PartOne } from './components/Part1';
 import { PartTwo } from './components/Part2';
@@ -18,12 +19,25 @@ const fileName = window.tinperFileName?window.tinperFileName:"tinper-bee";
 const cookieId = window.tinperCookieId?window.tinperCookieId:"tinper-bee-theme";
 
 class Theme extends Component {
+
   constructor(props) {
+    
     super(props);
     this.state = {
       themeSelectedIndex: 0,
     }
 
+  }
+  // // 声明需要使用的Context属性
+  // static contextTypes = {
+  //   themeSelectedIndex: PropTypes.number
+  // }
+  componentDidMount(){
+    if(document.getElementById(cookieId)){
+      document.getElementById(cookieId).href = ('//iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/latest/assets/tinper-bee.css');
+    }else{
+      document.getElementById('tinper-bee-csslink').href = ('//iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/latest/assets/tinper-bee.css');
+    }
   }
   changeThemeJS = (_fileName) => {
     currentThemeFileName = _fileName;
@@ -94,7 +108,8 @@ class Theme extends Component {
   }
 
   getComponentHeader = () => {
-    let { themeSelectedIndex } = this.state;
+    // let { themeSelectedIndex } = this.state;
+    let {themeSelectedIndex} = this.state;
     return themeDisplay.map((item, index) => {
       let active = '';
       if (index === themeSelectedIndex) active = 'active'
@@ -113,7 +128,6 @@ class Theme extends Component {
     })
   }
   render() {
-
     return (
       <div className="theme-display">
         <ul className="theme-display-list">

@@ -573,12 +573,12 @@ class Home extends Component {
           </div>
 
           <div className="exampleall" >
-             <ExampleTinper styleJs={styleJs} theme={data} />
-              {/* <PartOne customed={true} theme={data} styleJs={styleJs} />
+             {/* <ExampleTinper styleJs={styleJs} theme={data} /> */}
+              <PartOne customed={true} theme={data} styleJs={styleJs} />
               <PartTwo customed={true} theme={data} styleJs={styleJs} />
-              <PartThree customed={true} theme={data} styleJs={styleJs} /> */}
-              {/* <PartFour customed={true} theme={data} styleJs={styleJs} /> */}
-              {/* <PartFive customed={true} theme={data} styleJs={styleJs} /> */}
+              <PartThree customed={true} theme={data} styleJs={styleJs} />
+              <PartFour customed={true} theme={data} styleJs={styleJs} />
+              <PartFive customed={true} theme={data} styleJs={styleJs} /> 
               <PartSix customed={true} theme={data} styleJs={styleJs} />
 
           </div>
