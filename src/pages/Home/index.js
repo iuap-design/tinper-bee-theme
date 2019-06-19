@@ -12,6 +12,15 @@ import Example from '../Example';
 import SearchPanel from 'bee-search-panel';
 import ExampleMenus from '../Example/ExampleMenus'; 
 
+import{
+    PartOne,
+    PartTwo,
+    PartThree,
+    PartFour,
+    PartFive,
+    PartSix,
+
+} from '../Theme/components/Part'
 let HeadContainer = SearchPanel.HeadContainer;
 let AdvancedContainer = SearchPanel.AdvancedContainer;
 const Option = Select.Option;
@@ -565,6 +574,13 @@ class Home extends Component {
 
           <div className="exampleall" >
              <ExampleTinper styleJs={styleJs} theme={data} />
+              {/* <PartOne customed={true} theme={data} styleJs={styleJs} />
+              <PartTwo customed={true} theme={data} styleJs={styleJs} />
+              <PartThree customed={true} theme={data} styleJs={styleJs} /> */}
+              {/* <PartFour customed={true} theme={data} styleJs={styleJs} /> */}
+              {/* <PartFive customed={true} theme={data} styleJs={styleJs} /> */}
+              <PartSix customed={true} theme={data} styleJs={styleJs} />
+
           </div>
  
           <div className="online title">
@@ -577,7 +593,7 @@ class Home extends Component {
               {/* <div className="online title">
                 页面代码
               </div> */}
-
+{/* 
               <div className="exampleall-app" >
                 <div className="example-left">
                   <ExampleMenus styleJs={styleJs} theme={data} />
@@ -586,7 +602,7 @@ class Home extends Component {
                 <div className="example-right">
                   <Example styleJs={styleJs} theme={data} />
                 </div>
-              </div>
+              </div> */}
           </div>
          
           <div className='clear annotation'>

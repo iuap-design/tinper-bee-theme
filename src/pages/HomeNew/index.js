@@ -6,7 +6,7 @@ class HomeNew extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: 0,
+      activeIndex: 1,
     }
 
   }
