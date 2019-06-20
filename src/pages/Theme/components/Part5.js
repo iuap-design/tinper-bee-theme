@@ -96,7 +96,6 @@ export class PartFive extends Component {
       let {styleJs:{all:_primary,button:_button},clsPrefix,theme} = this.props;
       const PrimaryTimePicker = styled(TimePicker)`{
         .u-time-picker-input {
-          border: 1px solid ${theme["border-color"]}!important 
           border-radius: ${theme["border-radius"]}!important 
          
         }

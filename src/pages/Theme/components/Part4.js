@@ -95,12 +95,12 @@ export class PartFour extends Component {
   };
   //end:bee-daatePicker
   //start:bee-tab
-  onTabChange = (activeKey) => {
-    console.log(`onChange ${activeKey} o-^-o`);
-    this.setState({
-      activeKey,
-    });
-  }
+  // onTabChange = (activeKey) => {
+  //   console.log(`onChange ${activeKey} o-^-o`);
+  //   this.setState({
+  //     activeKey,
+  //   });
+  // }
   //end:bee-tab
   //start:bee-number-input 
   handleNumChange = (value) => {
@@ -136,11 +136,14 @@ export class PartFour extends Component {
       }
       border-radius:${theme["border-radius"]}px !important;
   `;
-    const PrimaryCheckboxGroup = styled(Checkbox.CheckboxGroup)`
-      .u-checkbox.is-checked .u-checkbox-label:after{
+    const PrimaryCheckbox = styled(Checkbox)`
+      &.u-checkbox input[type=checkbox]:focus+.u-checkbox-label:before{
+        border-color:${theme["primary-color"]}  !important;
+      }
+      &.u-checkbox.is-checked .u-checkbox-label:after{
         color:${theme["primary-color"]}  !important;
       }
-      .u-checkbox.u-checkbox-indeterminate .u-checkbox-label:after{
+      &.u-checkbox.u-checkbox-indeterminate .u-checkbox-label:after{
         color:${theme["primary-color"]}  !important;
       }
     `;
@@ -238,22 +241,20 @@ export class PartFour extends Component {
         </ColItem>
         <Col className="three-in-one" md={3} xs={12} sm={12} >
           <ColItem md={12} title={'多选 Checkbox'}>
-          <PrimaryCheckboxGroup>
-              <Checkbox
+              <PrimaryCheckbox
                   disabled
                   className="test" >组织
-              </Checkbox>
-              <Checkbox
+              </PrimaryCheckbox>
+              <PrimaryCheckbox
                   ref="test"
                   checked={true}>
                   部门
-              </Checkbox>
-              <Checkbox
+              </PrimaryCheckbox>
+              <PrimaryCheckbox
                   ref="test"
                   >
                   人员
-              </Checkbox> 
-            </PrimaryCheckboxGroup>
+              </PrimaryCheckbox> 
           </ColItem>
           <ColItem md={12} title={'单选 Radio'}>
           <PrimaryRadioGroup name="lol" 
@@ -277,8 +278,9 @@ export class PartFour extends Component {
         <Col className="three-in-one" md={6} xs={12} sm={12} >
           <ColItem md={12} title={'多选 Checkbox'}>
             <PrimaryTabs
-              value={this.state.activeKey}
-              onChange={this.onTabChange}
+              // value={this.state.activeKey}
+              // onChange={this.onTabChange}
+              defaultActiveKey="1"
               className="demo1-tabs"
             >
               <PrimaryTabs.TabPane tab='Tab 1' key="1">Content of Tab Pane 1</PrimaryTabs.TabPane>
@@ -403,7 +405,7 @@ export class PartFour extends Component {
           <ColItem md={12} title={'多选 Checkbox'}>
             <Tabs
               defaultActiveKey="1"
-              onChange={this.onTabChange}
+              // onChange={this.onTabChange}
               className="demo1-tabs"
             >
               <TabPane tab='Tab 1' key="1">Content of Tab Pane 1</TabPane>
