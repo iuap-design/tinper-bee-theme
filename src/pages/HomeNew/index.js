@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Home from '../Home';
 import Theme from '../Theme';
 import './index.scss';
+const cookieId = window.tinperCookieId?window.tinperCookieId:"tinper-bee-theme";
 class HomeNew extends Component {
   constructor(props) {
     super(props);
@@ -11,23 +12,17 @@ class HomeNew extends Component {
     }
     this.themeSelectedIndex = 0;
   }
-  // static childContextTypes = {
-  //   themeSelectedIndex: PropTypes.number,
-  // }
-  // // 返回Context对象，方法名是约定好的
-  // getChildContext () {
-  //   return {
-  //     themeSelectedIndex: this.themeSelectedIndex,
-  //   }
-  // }
-
-  // changeThemeNum = (index) =>{
-  //   this.themeSelectedIndex = index;
-  // }
+  
   handleClick = (activeIndex) => {
     if (activeIndex === this.state.activeIndex) return;
     this.setState({
       activeIndex
+    },()=>{
+      if(document.getElementById(cookieId)){
+        document.getElementById(cookieId).href = ('//iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/latest/assets/tinper-bee.css');
+      }else{
+        document.getElementById('tinper-bee-csslink').href = ('//iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/latest/assets/tinper-bee.css');
+      }
     })
   }
   

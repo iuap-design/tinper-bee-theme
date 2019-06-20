@@ -28,17 +28,7 @@ class Theme extends Component {
     }
 
   }
-  // // 声明需要使用的Context属性
-  // static contextTypes = {
-  //   themeSelectedIndex: PropTypes.number
-  // }
-  componentDidMount(){
-    if(document.getElementById(cookieId)){
-      document.getElementById(cookieId).href = ('//iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/latest/assets/tinper-bee.css');
-    }else{
-      document.getElementById('tinper-bee-csslink').href = ('//iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/latest/assets/tinper-bee.css');
-    }
-  }
+ 
   changeThemeJS = (_fileName) => {
     currentThemeFileName = _fileName;
     currentThemeFileUrl = cdnUrl+currentThemeFileName;

@@ -81,12 +81,14 @@ export class PartTwo extends Component{
         border-top-color:${theme["primary-color"]} !important;
         color: ${theme["primary-color"]} !important;
       }
-      ..u-calendar-selected-day .u-calendar-date{
-        background: ${theme["item-selected-bg-color-base"]} !important
-      }
+      
       .u-calendar-full-header .u-calendar-full-header-switcher .u-calendar-full-header-switcher-focus{
         border-color:${theme["primary-color"]} !important;
         background-color:${theme["primary-color"]} !important;
+      }
+      &.u-calendar-fullscreen .u-calendar-selected-day .u-calendar-date {
+        background: ${theme["item-selected-bg-color-base"]} !important
+        color:${theme["primary-color"]} !important;
       }
      
     }`
