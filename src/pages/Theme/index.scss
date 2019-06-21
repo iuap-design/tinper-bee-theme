@@ -1,13 +1,13 @@
 .theme-display{
     .theme-display-item {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 20px 20px 10px 20px;
         text-align: center;
         .theme-display-item-title {
             font-size: 12px;
             font-weight: 400;
             color: rgba(33,33,33,1);
-            padding-bottom: 20px;
+            padding-bottom: 10px;
             display: inline-block;
           }
           .theme-display-item-block {
@@ -23,7 +23,7 @@
                 top: 50%;
                 left: 50%;
                 font-size: 16px;
-                margin-left: -10px;
+                margin-left: -12px;
                 margin-top: -12px;
                 color: #fff;
             }
