@@ -114,8 +114,11 @@ export class PartFive extends Component {
       const PrimaryCascader = styled(Cascader)`${_primary}`;
 
       const PrimarySwitch = styled(Switch)`{
-        border-color: ${theme["primary-color"]} !important;
-        background-color: ${theme["primary-color"]} !important;
+        &.is-checked{
+          border-color: ${theme["primary-color"]} !important;
+          background-color: ${theme["primary-color"]} !important;
+        }
+        
       }`
       const PrimaryRate = styled(Rate)`{
         .u-rate-star-full i{
