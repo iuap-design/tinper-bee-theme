@@ -12,16 +12,20 @@ class HomeNew extends Component {
     }
     this.themeSelectedIndex = 0;
   }
-  
+  componentDidMount(){
+    if(this.state.activeIndex === 1){
+      document.body.className = document.body.className + 'customed';//使用color.less
+    }
+  }
   handleClick = (activeIndex) => {
     if (activeIndex === this.state.activeIndex) return;
     this.setState({
       activeIndex
     },()=>{
-      if(document.getElementById(cookieId)){
-        document.getElementById(cookieId).href = ('//iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/latest/assets/tinper-bee.css');
+      if(activeIndex === 1){
+        document.body.className = document.body.className + 'customed';
       }else{
-        document.getElementById('tinper-bee-csslink').href = ('//iuap-design-cdn.oss-cn-beijing.aliyuncs.com/static/tinper-bee/latest/assets/tinper-bee.css');
+        document.body.className = '';
       }
     })
   }
@@ -38,7 +42,13 @@ class HomeNew extends Component {
           <li className={`theme-tab-item ${activeIndex === 0 ? 'theme-tab-item-actived' : ''}`} onClick={e => this.handleClick(0)}>预制</li>
           <li className={`theme-tab-item ${activeIndex === 1 ? 'theme-tab-item-actived' : ''}`} onClick={e => this.handleClick(1)}>自定义</li>
         </ul>
-        <Content/>
+        <div className="ready-theme" style={activeIndex === 1 ? {"transform": 'translate(-100%,-100%)',  "position": "absolute",'zIndex':-1}:{}}>
+          <Theme></Theme>
+        </div>
+        <div className="customed-theme" style={activeIndex === 0 ? {"transform": 'translate(-100%,-100%)', "position": "absolute",'zIndex':-1}:{}}>
+          <Home></Home>
+        </div>
+       
       </div>
 
 

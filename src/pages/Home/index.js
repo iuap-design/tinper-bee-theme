@@ -155,6 +155,7 @@ class Home extends Component {
       styleJs: _styleJs
     }
     this.getAlltag();
+    this.lessChangeStyle = {};
   }
 
   getAlltag = () => {
@@ -279,6 +280,23 @@ class Home extends Component {
       data: { theme },
       style: _style,
       styleJs: this.getObjToStyle(_style)
+    },()=>{
+      this.lessChangeStyle[`@${attr.key}`] = color;
+      if(attr.key === 'border-radius' && color){
+        this.lessChangeStyle[`@${attr.key}`] = color + 'px';
+      }else if(attr.key === 'border-color' && !color){
+        this.lessChangeStyle[`@${attr.key}`] = '#A5ADBA'
+      }
+      
+      console.log('currentStyle',this.lessChangeStyle)
+
+      window.less.modifyVars(
+        this.lessChangeStyle
+      )
+        .then(() => { console.log('change success') })
+        .catch(error => {
+          console.log(`Failed to update theme`, error);
+      });
     });
   }
 
