@@ -605,19 +605,19 @@ class Home extends Component {
               <div htmlFor="" className="theme-line-title">组件效果预览</div>
               <div className="theme-display-content">
                 <div className="content-line">
-                <PartOne customed={true} theme={data} styleJs={styleJs} />
+                <PartOne  />
                 </div>
                 <div className="content-line">
-                  <PartTwo customed={true} theme={data} styleJs={styleJs} />
+                  <PartTwo  />
                 </div>
                 <div className="content-line">
-                  <PartThree customed={true} theme={data} styleJs={styleJs} />
+                  <PartThree  />
                 </div>
                 <div className="content-line">
-                  <PartFour customed={true} theme={data} styleJs={styleJs} />
+                  <PartFour  />
                 </div>
                 <div className="content-line">
-                  <PartFive customed={true} theme={data} styleJs={styleJs} />
+                  <PartFive  />
                 </div>
                 <div className="content-line">
                   <PartSix />
