@@ -92,63 +92,6 @@ export class PartFive extends Component {
       }]
     }
     ];
-    if(this.props.customed){
-      let {styleJs:{all:_primary,button:_button},clsPrefix,theme} = this.props;
-      const PrimaryTimePicker = styled(TimePicker)`{
-        .u-time-picker-input {
-          border-radius: ${theme["border-radius"]}!important 
-         
-        }
-        .u-time-picker-panel li.u-time-picker-panel-select-option-selected{
-          background: ${theme["item-selected-bg-color-base"]} !important;
-          color: ${theme["primary-color"]} !important;
-        }
-        .u-time-picker-panel .u-time-picker-panel-inner {
-          border-radius: ${theme["border-radius"]}!important      
-        }
-        .u-time-picker-panel .u-time-picker-panel-select li:hover {
-          background: ${theme["item-hover-bg-color-base"]} !important;
-        }
-        
-      }`
-      const PrimaryCascader = styled(Cascader)`${_primary}`;
-
-      const PrimarySwitch = styled(Switch)`{
-        &.is-checked{
-          border-color: ${theme["primary-color"]} !important;
-          background-color: ${theme["primary-color"]} !important;
-        }
-        
-      }`
-      const PrimaryRate = styled(Rate)`{
-        .u-rate-star-full i{
-          color:${theme["primary-color"]} !important;
-        }
-      }`;
-      return(
-        <Row>
-        <ColItem md={3} title={'时间 TimePicker'} >
-           <PrimaryTimePicker  placeholder="选择时间" onChange={()=>{}} />
-        </ColItem>
-        <ColItem md={3} title={'级联菜单 Cascader'} >
-          <PrimaryCascader
-            options={options}
-            onChange={this.onChange}
-            placeholder="请选择"
-          />
-        </ColItem>
-        <ColItem md={3} title={'开关 Switch'} >
-          <PrimarySwitch
-            checked={this.state.checked}
-            onChange={this.onSwitchChange}
-          />
-        </ColItem>
-        <ColItem md={3} title={'评分 Rate'} >
-          <PrimaryRate value={this.state.value} onChange={this.handRateChange} />
-        </ColItem>
-      </Row>
-      )
-    }
     return (
       <Row>
         <ColItem md={3} title={'时间 TimePicker'} >

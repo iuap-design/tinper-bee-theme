@@ -65,43 +65,6 @@ export const PartSix = (props) => {
       key: "3"
     }
   ];
-  if(props.customed){
-    let {
-    clsPrefix,theme} = props;
-    const PrimaryTable= styled(Table)`
-      .operation-btn>a{
-          color:${theme["text-color-base"]} !important;
-      }
-      .u-checkbox.u-checkbox-indeterminate .u-checkbox-label:after{
-        color:${theme["primary-color"]} !important;
-      }
-      .u-checkbox.is-checked .u-checkbox-label:after{
-        color:${theme["primary-color"]} !important;
-      }
-      .u-table-row-hover{
-        background:${theme["table-row-hover-bg-color"]} !important; 
-      }
-      .u-table-thead th{
-        background:${theme["table-header-background-color"]} !important; 
-      }
-      .u-table-thead .th-drag{
-        color:${theme["table-header-text-color"]} !important; 
-      }
-      .u-table td{
-        border-bottom:1px solid ${theme["table-border-color-base"]} !important;
-      }
-      .u-table-bordered td, .u-table-bordered th{ 
-        border-right:1px solid ${theme["table-border-color-base"]} !important;
-      }
-    `;
-    return(
-      <Row>
-      <ColItem md={12} title={'表格 Table'} height={274}>
-        <PrimaryTable columns={columns} data={data} size="sm" />
-      </ColItem>
-    </Row>
-    )
-  }
   return (
     <Row>
       <ColItem md={12} title={'表格 Table'} height={274}>
