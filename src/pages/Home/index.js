@@ -665,8 +665,8 @@ class Home extends Component {
 
               <div className='clear submit'>
                 {
-                  version === "" ? <Button bordered disabled > 开始构建 </Button> : <Button bordered
-                    onClick={this.btnSubmit} > 开始构建</Button>
+                  version === "" ? <Button bordered disabled > 开始构建 </Button> : 
+                    <Button bordered onClick={this.btnSubmit} > 开始构建</Button>
                 }
               </div>
 

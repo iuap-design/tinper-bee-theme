@@ -46,7 +46,7 @@
     "webpack-merge": "^4.1.2"
   },
   "dependencies": {
-    "bee-colorpicker": "0.0.7",
+    "bee-colorpicker": "0.0.10",
     "bee-complex-grid": "^2.0.4",
     "bee-datepicker": "^2.0.14",
     "bee-loading": "^1.0.9",
@@ -66,6 +66,6 @@
     "reactcss": "^1.2.3",
     "rgb-hex": "^2.1.0",
     "styled-components": "^4.2.0",
-    "tinper-bee": "latest"
+    "tinper-bee": "^2.1.2"
   }
 }
