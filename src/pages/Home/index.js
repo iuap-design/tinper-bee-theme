@@ -52,7 +52,7 @@ let defaultValueAll = {
   active: "#E60012",
   hover: "#E60012",
   "font-family": "Open Sans2",
-  "font-size": "12",
+  "font-size": "14",
   color: "#212121",
   "border-color": "#a5adba",
   "border-radius": "3",
@@ -520,6 +520,7 @@ class Home extends Component {
       all: [
         { type: "color", label: "(active)色", key: "primary-color-dark", style: "active", level: "senior" },
         { type: "color", label: "(hover)色", key: "primary-color-light", style: "hover", level: "senior" },
+        { type: "number", label: "字体大小", key: "font-size-base", style: "font-size", level: "senior" },
         { type: "color", label: "字体颜色", key: "text-color-base", style: "color", level: "senior" },
         { type: "color", label: "边框颜色", key: "border-color", style: "border-color", level: "senior" },
         { type: "color", label: "条目hover背景色", key: "item-hover-bg-color-base", style: "item-bg", level: "senior" },
