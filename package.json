@@ -56,7 +56,7 @@
     "fetch-plugin": "^1.2.5",
     "hex-rgb": "^3.0.0",
     "js-file-downloader": "^1.1.0",
-    "marked": "^0.4.0",
+    "marked": "^1.1.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.1",
     "react-color": "^2.17.0",
